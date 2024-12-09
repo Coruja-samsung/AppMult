@@ -32,11 +32,6 @@ Partial Class TelaValidacao
         TableLayoutPanel1 = New TableLayoutPanel()
         Panel11 = New Panel()
         AdvancedDataGridView1 = New Zuby.ADGV.AdvancedDataGridView()
-        Cod_Caixa = New DataGridViewTextBoxColumn()
-        SKUs = New DataGridViewTextBoxColumn()
-        EANs = New DataGridViewTextBoxColumn()
-        SERIALs = New DataGridViewTextBoxColumn()
-        STATU = New DataGridViewTextBoxColumn()
         TableLayoutPanel10 = New TableLayoutPanel()
         TableLayoutPanel2 = New TableLayoutPanel()
         TableLayoutPanel3 = New TableLayoutPanel()
@@ -187,7 +182,6 @@ Partial Class TelaValidacao
         ' 
         AdvancedDataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         AdvancedDataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        AdvancedDataGridView1.Columns.AddRange(New DataGridViewColumn() {Cod_Caixa, SKUs, EANs, SERIALs, STATU})
         AdvancedDataGridView1.Dock = DockStyle.Fill
         AdvancedDataGridView1.FilterAndSortEnabled = True
         AdvancedDataGridView1.FilterStringChangedInvokeBeforeDatasourceUpdate = True
@@ -199,47 +193,6 @@ Partial Class TelaValidacao
         AdvancedDataGridView1.Size = New Size(832, 272)
         AdvancedDataGridView1.SortStringChangedInvokeBeforeDatasourceUpdate = True
         AdvancedDataGridView1.TabIndex = 1
-        ' 
-        ' Cod_Caixa
-        ' 
-        Cod_Caixa.HeaderText = "Cod_Caixa"
-        Cod_Caixa.MinimumWidth = 24
-        Cod_Caixa.Name = "Cod_Caixa"
-        Cod_Caixa.ReadOnly = True
-        Cod_Caixa.SortMode = DataGridViewColumnSortMode.Programmatic
-        ' 
-        ' SKUs
-        ' 
-        SKUs.HeaderText = "SKUs"
-        SKUs.MinimumWidth = 24
-        SKUs.Name = "SKUs"
-        SKUs.ReadOnly = True
-        SKUs.SortMode = DataGridViewColumnSortMode.Programmatic
-        ' 
-        ' EANs
-        ' 
-        EANs.HeaderText = "EANs"
-        EANs.MinimumWidth = 24
-        EANs.Name = "EANs"
-        EANs.ReadOnly = True
-        EANs.SortMode = DataGridViewColumnSortMode.Programmatic
-        ' 
-        ' SERIALs
-        ' 
-        SERIALs.HeaderText = "SERIALs"
-        SERIALs.MinimumWidth = 24
-        SERIALs.Name = "SERIALs"
-        SERIALs.ReadOnly = True
-        SERIALs.SortMode = DataGridViewColumnSortMode.Programmatic
-        ' 
-        ' STATU
-        ' 
-        STATU.FillWeight = 40F
-        STATU.HeaderText = "STATU"
-        STATU.MinimumWidth = 24
-        STATU.Name = "STATU"
-        STATU.ReadOnly = True
-        STATU.SortMode = DataGridViewColumnSortMode.Programmatic
         ' 
         ' TableLayoutPanel10
         ' 
@@ -700,10 +653,5 @@ Partial Class TelaValidacao
     Friend WithEvents TableLayoutPanel11 As TableLayoutPanel
     Friend WithEvents Panel10 As Panel
     Friend WithEvents AdvancedDataGridView1 As Zuby.ADGV.AdvancedDataGridView
-    Friend WithEvents Cod_Caixa As DataGridViewTextBoxColumn
-    Friend WithEvents SKUs As DataGridViewTextBoxColumn
-    Friend WithEvents EANs As DataGridViewTextBoxColumn
-    Friend WithEvents SERIALs As DataGridViewTextBoxColumn
-    Friend WithEvents STATU As DataGridViewTextBoxColumn
 
 End Class

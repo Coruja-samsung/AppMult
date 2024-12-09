@@ -101,8 +101,6 @@ Public Class TelaValidacao
                             Else
                                 MessageBox.Show("Atualize o Arquivo de Eans!", "Atenção", MessageBoxButtons.OKCancel)
                             End If
-
-                            AdvancedDataGridView1.Rows.Add(newRow)
                         End If
                     Next
                 End Using
