@@ -86,23 +86,46 @@ Public Class TelaValidacao
                 Using accessConn As New OleDbConnection(accessConnStr)
                     accessConn.Open()
 
-                    ' Para cada linha no DataTable do primeiro arquivo Excel, insira os dados na tabela Access
+                    ' Criar uma variável para armazenar a tabela temporária
+                    Dim tabela As New DataTable()
+                    tabela.Columns.Add("Cod_Caixa")
+                    tabela.Columns.Add("SKUs")
+                    tabela.Columns.Add("EANs")
+                    tabela.Columns.Add("SERIALs")
+                    tabela.Columns.Add("STATUs")
+
+                    ' Iterar pelas linhas da primeira tabela (dt1)
                     For Each row1 As DataRow In dt1.Rows
                         If TextBox1.Text = row1.Field(Of String)("Pallet Group") Then
-                            ' Criar uma nova linha para adicionar ao DataGridView
-                            Dim newRow As New DataGridViewRow()
-                            ' Adicionando as células à nova linha
+                            ' Procurar a linha correspondente na tabela dt2
                             Dim row2 As DataRow = dt2.AsEnumerable().FirstOrDefault(Function(r) r.Field(Of String)("Item Code") = row1.Field(Of String)("Item Code"))
                             If row2 IsNot Nothing Then
-                                newRow.Cells.Add(New DataGridViewTextBoxCell() With {.Value = row1("Pallet Group")})
-                                newRow.Cells.Add(New DataGridViewTextBoxCell() With {.Value = row1("Item Code")})
-                                newRow.Cells.Add(New DataGridViewTextBoxCell() With {.Value = row2("Alt# Code")})
-                                newRow.Cells.Add(New DataGridViewTextBoxCell() With {.Value = row1("Pallet No#")})
+                                ' Adicionar os dados na tabela temporária
+                                tabela.Rows.Add(
+                                    row1("Pallet Group"),
+                                    row1("Item Code"),
+                                    row2("Alt# Code"),
+                                    row1("Pallet No#")
+                                )
                             Else
                                 MessageBox.Show("Atualize o Arquivo de Eans!", "Atenção", MessageBoxButtons.OKCancel)
                             End If
                         End If
                     Next
+
+                    AdvancedDataGridView1.DataSource = Nothing
+
+                    AdvancedDataGridView1.DataSource = tabela
+
+                    AdvancedDataGridView1.SetChecklistTextFilterRemoveNodesOnSearchMode(AdvancedDataGridView1.Columns(0), False)
+                    AdvancedDataGridView1.SetChecklistTextFilterRemoveNodesOnSearchMode(AdvancedDataGridView1.Columns(1), False)
+                    AdvancedDataGridView1.SetChecklistTextFilterRemoveNodesOnSearchMode(AdvancedDataGridView1.Columns(2), False)
+                    AdvancedDataGridView1.SetChecklistTextFilterRemoveNodesOnSearchMode(AdvancedDataGridView1.Columns(3), False)
+                    AdvancedDataGridView1.SetChecklistTextFilterRemoveNodesOnSearchMode(AdvancedDataGridView1.Columns(4), False)
+
+
+
+
                 End Using
 
                 stopwatch.Stop()
