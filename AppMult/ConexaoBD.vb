@@ -9,24 +9,25 @@ Module ConexaoBD
         stopwatch.Start()
 
         ' Caminhos dos arquivos Excel
-        Dim excelFile1 As String = "C:\Users\Luiz Henrique\Desktop\BaseMult\Base\Search.xlsx"
-        Dim excelFile2 As String = "C:\Users\Luiz Henrique\Desktop\BaseMult\Base\Eans.xlsx"
-        Dim AcessBD As String = "C:\Users\Luiz Henrique\Desktop\BaseMult\Base\AppMult.accdb"
+        Dim excelFile1 As String = "C:\Users\luiz.os\Desktop\BaseAppMult\SerialScan.xls"
+        Dim excelFile2 As String = "C:\Users\luiz.os\Desktop\BaseAppMult\EANs.xls"
+        Dim AcessBD As String = "C:\Users\luiz.os\Desktop\BaseAppMult\AppMult.accdb"
 
         ' Conexão com o banco de dados Access
         Dim accessConnStr As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & AcessBD
 
         ' Consulta SQL para ler os dados do primeiro arquivo Excel
-        Dim query1 As String = "SELECT [Pallet Group], [Pallet No#], [Item Code] FROM [Planilha1$]"
+        Dim query1 As String = "SELECT F9, F5, F10 FROM [sheet1$] WHERE F9 IS NOT NULL AND F9 <> ' ' AND F5 <> 'Item Code' "
 
         ' Consulta SQL para ler os dados do segundo arquivo Excel
-        Dim query2 As String = "SELECT [Item Code], [Alt# Code] FROM [Planilha2$]"
+        Dim query2 As String = "SELECT F3, F1 FROM [sheet1$] WHERE F3 IS NOT NULL AND F3 <> 'Item Code'"
 
         ' Executando a consulta e inserindo os dados no banco de dados Access
         Try
+            OpenExcelSerial()
             Dim dt1 As New DataTable()
             ' Conectando ao primeiro arquivo Excel
-            Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & excelFile1 & ";Extended Properties='Excel 12.0 Xml;HDR=YES';")
+            Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & excelFile1 & ";Extended Properties='Excel 12.0;HDR=NO';")
                 conn1.Open()
                 ' Cria um comando para a consulta SQL
                 Using cmd1 As New OleDbCommand(query1, conn1)
@@ -36,10 +37,12 @@ Module ConexaoBD
                     conn1.Close()
                 End Using
             End Using
+            CloseExcels()
 
+            OpenExcelEan()
             Dim dt2 As New DataTable()
             ' Conectando ao segundo arquivo Excel
-            Using conn2 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & excelFile2 & ";Extended Properties='Excel 12.0 Xml;HDR=YES';")
+            Using conn2 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & excelFile2 & ";Extended Properties='Excel 12.0;HDR=NO';")
                 conn2.Open()
                 ' Cria um comando para a consulta SQL no segundo arquivo Excel
                 Using cmd2 As New OleDbCommand(query2, conn2)
@@ -49,27 +52,44 @@ Module ConexaoBD
                     conn2.Close()
                 End Using
             End Using
+            CloseExcels()
 
             ' Conectando ao banco de dados Access
             Using accessConn As New OleDbConnection(accessConnStr)
                 accessConn.Open()
 
+                Dim DeleteQuery As String = "DELETE FROM Validacao;"
+                Using DeleteCmd As New OleDbCommand(DeleteQuery, accessConn)
+                    DeleteCmd.ExecuteNonQuery()
+                End Using
+
                 ' Para cada linha no DataTable do primeiro arquivo Excel, insira os dados na tabela Access
                 For Each row1 As DataRow In dt1.Rows
                     ' Achar a linha correspondente no segundo DataTable
-                    Dim row2 As DataRow = dt2.AsEnumerable().FirstOrDefault(Function(r) r.Field(Of String)("Item Code") = row1.Field(Of String)("Item Code"))
+                    Dim row2 As DataRow = dt2.AsEnumerable().FirstOrDefault(Function(r) r.Field(Of String)("F3") = row1.Field(Of String)("F5"))
 
                     If row2 IsNot Nothing Then
                         ' Monta o comando SQL para inserção no Access
-                        Dim insertQuery As String = "INSERT INTO BaseValidacao (Caixa, Cod_Item, Ean, Serial) VALUES (?, ?, ?, ?)"
+                        Dim insertQuery As String = "INSERT INTO Validacao (CAIXA, SKU, EAN, SERIAL) VALUES (?, ?, ?, ?)"
 
                         Using insertCmd As New OleDbCommand(insertQuery, accessConn)
                             ' Adiciona os parâmetros da consulta
-                            insertCmd.Parameters.AddWithValue("?", row1("Pallet Group"))
-                            insertCmd.Parameters.AddWithValue("?", row1("Item Code"))
-                            insertCmd.Parameters.AddWithValue("?", row2("Alt# Code"))
-                            insertCmd.Parameters.AddWithValue("?", row1("Pallet No#"))
+                            insertCmd.Parameters.AddWithValue("?", row1("F9"))
+                            insertCmd.Parameters.AddWithValue("?", row1("F5"))
+                            insertCmd.Parameters.AddWithValue("?", row2("F1"))
+                            insertCmd.Parameters.AddWithValue("?", row1("F10"))
+                            ' Executa o comando de inserção
+                            insertCmd.ExecuteNonQuery()
+                        End Using
+                    Else
+                        ' Monta o comando SQL para inserção no Access
+                        Dim insertQuery As String = "INSERT INTO Validacao (CAIXA, SKU, EAN, SERIAL) VALUES (?, ?, ?, ?)"
 
+                        Using insertCmd As New OleDbCommand(insertQuery, accessConn)
+                            ' Adiciona os parâmetros da consulta
+                            insertCmd.Parameters.AddWithValue("?", row1("F9"))
+                            insertCmd.Parameters.AddWithValue("?", row1("F5"))
+                            insertCmd.Parameters.AddWithValue("?", row1("F10"))
                             ' Executa o comando de inserção
                             insertCmd.ExecuteNonQuery()
                         End Using
@@ -91,6 +111,7 @@ Module ConexaoBD
 
             MessageBox.Show("Dados inseridos com sucesso! " & formattedTime)
         Catch ex As Exception
+            CloseExcels()
             MessageBox.Show("Erro: " & ex.Message)
         End Try
     End Sub
