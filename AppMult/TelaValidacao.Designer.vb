@@ -182,6 +182,8 @@ Partial Class TelaValidacao
         ' 
         ' AdvancedDataGridView1
         ' 
+        AdvancedDataGridView1.AllowUserToAddRows = False
+        AdvancedDataGridView1.AllowUserToDeleteRows = False
         AdvancedDataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         AdvancedDataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells
         AdvancedDataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
@@ -191,6 +193,7 @@ Partial Class TelaValidacao
         AdvancedDataGridView1.Location = New Point(0, 0)
         AdvancedDataGridView1.MaxFilterButtonImageHeight = 23
         AdvancedDataGridView1.Name = "AdvancedDataGridView1"
+        AdvancedDataGridView1.ReadOnly = True
         AdvancedDataGridView1.RightToLeft = RightToLeft.No
         AdvancedDataGridView1.RowHeadersVisible = False
         AdvancedDataGridView1.SelectionMode = DataGridViewSelectionMode.CellSelect
@@ -462,11 +465,10 @@ Partial Class TelaValidacao
         ' TextBox1
         ' 
         TextBox1.AcceptsReturn = True
-        TextBox1.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         TextBox1.Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        TextBox1.Location = New Point(43, 24)
+        TextBox1.Location = New Point(43, 27)
         TextBox1.Name = "TextBox1"
-        TextBox1.PlaceholderText = "Cod Caixa"
+        TextBox1.PlaceholderText = "Bipe o Cod Caixa"
         TextBox1.Size = New Size(242, 33)
         TextBox1.TabIndex = 1
         TextBox1.TextAlign = HorizontalAlignment.Center
@@ -498,11 +500,12 @@ Partial Class TelaValidacao
         ' 
         ' TextBox2
         ' 
+        TextBox2.AcceptsReturn = True
         TextBox2.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         TextBox2.Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         TextBox2.Location = New Point(3, 3)
         TextBox2.Name = "TextBox2"
-        TextBox2.PlaceholderText = "Ean do Produto"
+        TextBox2.PlaceholderText = "Bipe o Ean do Produto"
         TextBox2.Size = New Size(480, 33)
         TextBox2.TabIndex = 1
         TextBox2.TextAlign = HorizontalAlignment.Center
@@ -519,11 +522,12 @@ Partial Class TelaValidacao
         ' 
         ' TextBox3
         ' 
+        TextBox3.AcceptsReturn = True
         TextBox3.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         TextBox3.Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         TextBox3.Location = New Point(3, 3)
         TextBox3.Name = "TextBox3"
-        TextBox3.PlaceholderText = "Serial do Produto"
+        TextBox3.PlaceholderText = "Bipe o Serial do Produto"
         TextBox3.Size = New Size(480, 33)
         TextBox3.TabIndex = 1
         TextBox3.TextAlign = HorizontalAlignment.Center
@@ -632,7 +636,6 @@ Partial Class TelaValidacao
     Friend WithEvents Panel9 As Panel
     Friend WithEvents Panel11 As Panel
     Friend WithEvents ProgressBar1 As ProgressBar
-    Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Label7 As Label
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
@@ -656,6 +659,7 @@ Partial Class TelaValidacao
     Friend WithEvents TableLayoutPanel10 As TableLayoutPanel
     Friend WithEvents TableLayoutPanel11 As TableLayoutPanel
     Friend WithEvents Panel10 As Panel
-    Friend WithEvents AdvancedDataGridView1 As Zuby.ADGV.AdvancedDataGridView
+    Public WithEvents TextBox1 As TextBox
+    Public WithEvents AdvancedDataGridView1 As Zuby.ADGV.AdvancedDataGridView
 
 End Class

@@ -1,4 +1,7 @@
 ﻿Imports System.Data.OleDb
+Imports System.Reflection.Emit
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+Imports Zuby.ADGV
 
 Module ConexaoBD
 
@@ -9,9 +12,9 @@ Module ConexaoBD
         stopwatch.Start()
 
         ' Caminhos dos arquivos Excel
-        Dim excelFile1 As String = "C:\Users\luiz.os\Desktop\BaseAppMult\SerialScan.xls"
-        Dim excelFile2 As String = "C:\Users\luiz.os\Desktop\BaseAppMult\EANs.xls"
-        Dim AcessBD As String = "C:\Users\luiz.os\Desktop\BaseAppMult\AppMult.accdb"
+        Dim excelFile1 As String = "C:\Users\Luiz Henrique\source\repos\AppMult\AppMult\BaseAppMult\SerialScan.xls"
+        Dim excelFile2 As String = "C:\Users\Luiz Henrique\source\repos\AppMult\AppMult\BaseAppMult\EANs.xls"
+        Dim AcessBD As String = "C:\Users\Luiz Henrique\source\repos\AppMult\AppMult\BaseAppMult\AppMult.accdb"
 
         ' Conexão com o banco de dados Access
         Dim accessConnStr As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & AcessBD
@@ -115,6 +118,86 @@ Module ConexaoBD
             MessageBox.Show("Erro: " & ex.Message)
         End Try
     End Sub
+
+    'Function PegarCaixa(Caixa As String)
+    '    Dim stopwatch As Stopwatch
+    '    stopwatch = New Stopwatch()
+    '    stopwatch.Start()
+
+    '    Dim AcessBD As String = "C:\Users\Luiz Henrique\source\repos\AppMult\AppMult\BaseAppMult\AppMult.accdb"
+    '    Dim accessConnStr As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & AcessBD
+    '    Dim query As String = "SELECT * FROM Validacao"
+
+    '    ' Executando a consulta e inserindo os dados no banco de dados Access
+    '    Try
+    '        ' Conectando ao banco de dados Access
+    '        Using accessConn As New OleDbConnection(accessConnStr)
+    '            accessConn.Open()
+
+    '            ' Criar uma variável para armazenar a tabela temporária
+    '            Dim tabela As New DataTable()
+    '            tabela.Columns.Add("CAIXA")
+    '            tabela.Columns.Add("SKUs")
+    '            tabela.Columns.Add("EANs")
+    '            tabela.Columns.Add("SERIALs")
+    '            tabela.Columns.Add("STATUs")
+
+    '            Dim dt1 As New DataTable
+
+    '            Using cmd1 As New OleDbCommand(query, accessConn)
+    '                ' Cria um adaptador para preencher o DataTable
+    '                Dim da1 As New OleDbDataAdapter(cmd1)
+    '                da1.Fill(dt1)
+    '            End Using
+
+    '            ' Iterar pelas linhas da primeira tabela (dt1)
+    '            For Each row1 As DataRow In dt1.Rows
+    '                If Caixa = row1.Field(Of String)("CAIXA") Then
+    '                    ' Procurar a linha correspondente na tabela dt2
+    '                    If row1.Field(Of String)("EAN") <> "" Then
+    '                        ' Adicionar os dados na tabela
+    '                        ' 
+
+    '                        Dim _dataSet1 As Object
+
+    '                        Dim newrow As Object() = {
+    '                            row1("CAIXA"),
+    '                            row1("SKU"),
+    '                            row1("EAN"),
+    '                            row1("SERIAL")
+    '                        }
+
+    '                    Else
+    '                        MessageBox.Show("Atualize o Arquivo de Eans!", "Atenção", MessageBoxButtons.OKCancel)
+    '                        Exit Function
+    '                    End If
+    '                End If
+    '            Next
+
+    '            If tabela.Rows.Count = 0 Then
+    '                MessageBox.Show("Caixa Não Encontrada!", "Atenção!")
+    '                Exit Function
+    '            End If
+
+    '            PegarCaixa = tabela
+
+    '        End Using
+
+    '        stopwatch.Stop()
+    '        Dim elapsed As TimeSpan = stopwatch.Elapsed
+
+    '        ' Formatando o TimeSpan como "hh:mm:ss:fff"
+    '        Dim formattedTime As String = String.Format("{0:D2}:{1:D2}:{2:D2}.{3:D3}",
+    '                                               elapsed.Hours,
+    '                                               elapsed.Minutes,
+    '                                               elapsed.Seconds,
+    '                                               elapsed.Milliseconds)
+
+    '        'MessageBox.Show("Dados inseridos com sucesso! " & formattedTime)
+    '    Catch ex As Exception
+    '        MessageBox.Show("Erro: " & ex.Message)
+    '    End Try
+    'End Function
 
 
 
