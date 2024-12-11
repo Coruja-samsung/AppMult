@@ -37,28 +37,28 @@ Partial Class TelaValidacao
         TableLayoutPanel3 = New TableLayoutPanel()
         Panel6 = New Panel()
         TableLayoutPanel4 = New TableLayoutPanel()
-        Label2 = New Label()
+        lbTotal = New Label()
         Label1 = New Label()
         Panel7 = New Panel()
         TableLayoutPanel5 = New TableLayoutPanel()
-        Label3 = New Label()
+        lbConferido = New Label()
         Label4 = New Label()
         Panel8 = New Panel()
         TableLayoutPanel6 = New TableLayoutPanel()
-        Label5 = New Label()
+        lbPendente = New Label()
         Label6 = New Label()
         Panel9 = New Panel()
         TableLayoutPanel7 = New TableLayoutPanel()
         TableLayoutPanel8 = New TableLayoutPanel()
         Panel14 = New Panel()
-        TextBox1 = New TextBox()
+        txtCaixa = New TextBox()
         TableLayoutPanel9 = New TableLayoutPanel()
         Panel15 = New Panel()
-        TextBox2 = New TextBox()
+        txtEan = New TextBox()
         Panel16 = New Panel()
-        TextBox3 = New TextBox()
+        txtSerial = New TextBox()
         TableLayoutPanel11 = New TableLayoutPanel()
-        Label7 = New Label()
+        lbPorcent = New Label()
         Panel10 = New Panel()
         ProgressBar1 = New ProgressBar()
         Panel2.SuspendLayout()
@@ -263,7 +263,7 @@ Partial Class TelaValidacao
         ' 
         TableLayoutPanel4.ColumnCount = 1
         TableLayoutPanel4.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
-        TableLayoutPanel4.Controls.Add(Label2, 0, 1)
+        TableLayoutPanel4.Controls.Add(lbTotal, 0, 1)
         TableLayoutPanel4.Controls.Add(Label1, 0, 0)
         TableLayoutPanel4.Dock = DockStyle.Fill
         TableLayoutPanel4.Location = New Point(0, 0)
@@ -274,19 +274,19 @@ Partial Class TelaValidacao
         TableLayoutPanel4.Size = New Size(257, 75)
         TableLayoutPanel4.TabIndex = 0
         ' 
-        ' Label2
+        ' lbTotal
         ' 
-        Label2.AutoSize = True
-        Label2.BackColor = Color.White
-        Label2.Dock = DockStyle.Fill
-        Label2.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label2.Location = New Point(30, 37)
-        Label2.Margin = New Padding(30, 0, 30, 10)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(197, 28)
-        Label2.TabIndex = 1
-        Label2.Text = "20"
-        Label2.TextAlign = ContentAlignment.MiddleCenter
+        lbTotal.AutoSize = True
+        lbTotal.BackColor = Color.White
+        lbTotal.Dock = DockStyle.Fill
+        lbTotal.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lbTotal.Location = New Point(30, 37)
+        lbTotal.Margin = New Padding(30, 0, 30, 10)
+        lbTotal.Name = "lbTotal"
+        lbTotal.Size = New Size(197, 28)
+        lbTotal.TabIndex = 1
+        lbTotal.Text = "0"
+        lbTotal.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' Label1
         ' 
@@ -317,7 +317,7 @@ Partial Class TelaValidacao
         ' 
         TableLayoutPanel5.ColumnCount = 1
         TableLayoutPanel5.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
-        TableLayoutPanel5.Controls.Add(Label3, 0, 1)
+        TableLayoutPanel5.Controls.Add(lbConferido, 0, 1)
         TableLayoutPanel5.Controls.Add(Label4, 0, 0)
         TableLayoutPanel5.Dock = DockStyle.Fill
         TableLayoutPanel5.Location = New Point(0, 0)
@@ -328,20 +328,20 @@ Partial Class TelaValidacao
         TableLayoutPanel5.Size = New Size(257, 75)
         TableLayoutPanel5.TabIndex = 1
         ' 
-        ' Label3
+        ' lbConferido
         ' 
-        Label3.AutoSize = True
-        Label3.BackColor = Color.White
-        Label3.Dock = DockStyle.Fill
-        Label3.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label3.ForeColor = Color.ForestGreen
-        Label3.Location = New Point(30, 37)
-        Label3.Margin = New Padding(30, 0, 30, 10)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(197, 28)
-        Label3.TabIndex = 1
-        Label3.Text = "20"
-        Label3.TextAlign = ContentAlignment.MiddleCenter
+        lbConferido.AutoSize = True
+        lbConferido.BackColor = Color.White
+        lbConferido.Dock = DockStyle.Fill
+        lbConferido.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lbConferido.ForeColor = Color.ForestGreen
+        lbConferido.Location = New Point(30, 37)
+        lbConferido.Margin = New Padding(30, 0, 30, 10)
+        lbConferido.Name = "lbConferido"
+        lbConferido.Size = New Size(197, 28)
+        lbConferido.TabIndex = 1
+        lbConferido.Text = "0"
+        lbConferido.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' Label4
         ' 
@@ -373,7 +373,7 @@ Partial Class TelaValidacao
         ' 
         TableLayoutPanel6.ColumnCount = 1
         TableLayoutPanel6.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
-        TableLayoutPanel6.Controls.Add(Label5, 0, 1)
+        TableLayoutPanel6.Controls.Add(lbPendente, 0, 1)
         TableLayoutPanel6.Controls.Add(Label6, 0, 0)
         TableLayoutPanel6.Dock = DockStyle.Fill
         TableLayoutPanel6.Location = New Point(0, 0)
@@ -384,20 +384,20 @@ Partial Class TelaValidacao
         TableLayoutPanel6.Size = New Size(258, 75)
         TableLayoutPanel6.TabIndex = 1
         ' 
-        ' Label5
+        ' lbPendente
         ' 
-        Label5.AutoSize = True
-        Label5.BackColor = Color.White
-        Label5.Dock = DockStyle.Fill
-        Label5.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label5.ForeColor = Color.IndianRed
-        Label5.Location = New Point(30, 37)
-        Label5.Margin = New Padding(30, 0, 30, 10)
-        Label5.Name = "Label5"
-        Label5.Size = New Size(198, 28)
-        Label5.TabIndex = 1
-        Label5.Text = "0"
-        Label5.TextAlign = ContentAlignment.MiddleCenter
+        lbPendente.AutoSize = True
+        lbPendente.BackColor = Color.White
+        lbPendente.Dock = DockStyle.Fill
+        lbPendente.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lbPendente.ForeColor = Color.IndianRed
+        lbPendente.Location = New Point(30, 37)
+        lbPendente.Margin = New Padding(30, 0, 30, 10)
+        lbPendente.Name = "lbPendente"
+        lbPendente.Size = New Size(198, 28)
+        lbPendente.TabIndex = 1
+        lbPendente.Text = "0"
+        lbPendente.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' Label6
         ' 
@@ -454,7 +454,7 @@ Partial Class TelaValidacao
         ' 
         ' Panel14
         ' 
-        Panel14.Controls.Add(TextBox1)
+        Panel14.Controls.Add(txtCaixa)
         Panel14.Dock = DockStyle.Fill
         Panel14.Location = New Point(0, 0)
         Panel14.Margin = New Padding(0)
@@ -462,16 +462,17 @@ Partial Class TelaValidacao
         Panel14.Size = New Size(328, 83)
         Panel14.TabIndex = 0
         ' 
-        ' TextBox1
+        ' txtCaixa
         ' 
-        TextBox1.AcceptsReturn = True
-        TextBox1.Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        TextBox1.Location = New Point(43, 27)
-        TextBox1.Name = "TextBox1"
-        TextBox1.PlaceholderText = "Bipe o Cod Caixa"
-        TextBox1.Size = New Size(242, 33)
-        TextBox1.TabIndex = 1
-        TextBox1.TextAlign = HorizontalAlignment.Center
+        txtCaixa.AcceptsReturn = True
+        txtCaixa.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        txtCaixa.Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txtCaixa.Location = New Point(43, 27)
+        txtCaixa.Name = "txtCaixa"
+        txtCaixa.PlaceholderText = "Bipe o Cod Caixa"
+        txtCaixa.Size = New Size(242, 33)
+        txtCaixa.TabIndex = 1
+        txtCaixa.TextAlign = HorizontalAlignment.Center
         ' 
         ' TableLayoutPanel9
         ' 
@@ -490,7 +491,7 @@ Partial Class TelaValidacao
         ' 
         ' Panel15
         ' 
-        Panel15.Controls.Add(TextBox2)
+        Panel15.Controls.Add(txtEan)
         Panel15.Dock = DockStyle.Fill
         Panel15.Location = New Point(0, 0)
         Panel15.Margin = New Padding(0)
@@ -498,21 +499,21 @@ Partial Class TelaValidacao
         Panel15.Size = New Size(486, 38)
         Panel15.TabIndex = 0
         ' 
-        ' TextBox2
+        ' txtEan
         ' 
-        TextBox2.AcceptsReturn = True
-        TextBox2.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-        TextBox2.Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        TextBox2.Location = New Point(3, 3)
-        TextBox2.Name = "TextBox2"
-        TextBox2.PlaceholderText = "Bipe o Ean do Produto"
-        TextBox2.Size = New Size(480, 33)
-        TextBox2.TabIndex = 1
-        TextBox2.TextAlign = HorizontalAlignment.Center
+        txtEan.AcceptsReturn = True
+        txtEan.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        txtEan.Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txtEan.Location = New Point(3, 3)
+        txtEan.Name = "txtEan"
+        txtEan.PlaceholderText = "Bipe o Ean do Produto"
+        txtEan.Size = New Size(480, 33)
+        txtEan.TabIndex = 1
+        txtEan.TextAlign = HorizontalAlignment.Center
         ' 
         ' Panel16
         ' 
-        Panel16.Controls.Add(TextBox3)
+        Panel16.Controls.Add(txtSerial)
         Panel16.Dock = DockStyle.Fill
         Panel16.Location = New Point(0, 38)
         Panel16.Margin = New Padding(0)
@@ -520,24 +521,24 @@ Partial Class TelaValidacao
         Panel16.Size = New Size(486, 39)
         Panel16.TabIndex = 1
         ' 
-        ' TextBox3
+        ' txtSerial
         ' 
-        TextBox3.AcceptsReturn = True
-        TextBox3.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-        TextBox3.Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        TextBox3.Location = New Point(3, 3)
-        TextBox3.Name = "TextBox3"
-        TextBox3.PlaceholderText = "Bipe o Serial do Produto"
-        TextBox3.Size = New Size(480, 33)
-        TextBox3.TabIndex = 1
-        TextBox3.TextAlign = HorizontalAlignment.Center
+        txtSerial.AcceptsReturn = True
+        txtSerial.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        txtSerial.Font = New Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        txtSerial.Location = New Point(3, 3)
+        txtSerial.Name = "txtSerial"
+        txtSerial.PlaceholderText = "Bipe o Serial do Produto"
+        txtSerial.Size = New Size(480, 33)
+        txtSerial.TabIndex = 1
+        txtSerial.TextAlign = HorizontalAlignment.Center
         ' 
         ' TableLayoutPanel11
         ' 
         TableLayoutPanel11.ColumnCount = 2
         TableLayoutPanel11.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 88.2074356F))
         TableLayoutPanel11.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 11.7925644F))
-        TableLayoutPanel11.Controls.Add(Label7, 1, 0)
+        TableLayoutPanel11.Controls.Add(lbPorcent, 1, 0)
         TableLayoutPanel11.Controls.Add(Panel10, 0, 0)
         TableLayoutPanel11.Dock = DockStyle.Fill
         TableLayoutPanel11.Location = New Point(3, 3)
@@ -547,18 +548,18 @@ Partial Class TelaValidacao
         TableLayoutPanel11.Size = New Size(820, 32)
         TableLayoutPanel11.TabIndex = 2
         ' 
-        ' Label7
+        ' lbPorcent
         ' 
-        Label7.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-        Label7.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label7.ForeColor = Color.Green
-        Label7.Location = New Point(723, 0)
-        Label7.Margin = New Padding(0)
-        Label7.Name = "Label7"
-        Label7.Size = New Size(97, 32)
-        Label7.TabIndex = 0
-        Label7.Text = "100%"
-        Label7.TextAlign = ContentAlignment.MiddleCenter
+        lbPorcent.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        lbPorcent.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lbPorcent.ForeColor = Color.Green
+        lbPorcent.Location = New Point(723, 0)
+        lbPorcent.Margin = New Padding(0)
+        lbPorcent.Name = "lbPorcent"
+        lbPorcent.Size = New Size(97, 32)
+        lbPorcent.TabIndex = 0
+        lbPorcent.Text = "0%"
+        lbPorcent.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' Panel10
         ' 
@@ -578,7 +579,6 @@ Partial Class TelaValidacao
         ProgressBar1.Size = New Size(713, 22)
         ProgressBar1.Step = 1
         ProgressBar1.TabIndex = 0
-        ProgressBar1.Value = 100
         ' 
         ' TelaValidacao
         ' 
@@ -636,30 +636,30 @@ Partial Class TelaValidacao
     Friend WithEvents Panel9 As Panel
     Friend WithEvents Panel11 As Panel
     Friend WithEvents ProgressBar1 As ProgressBar
-    Friend WithEvents Label7 As Label
+    Friend WithEvents lbPorcent As Label
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
     Friend WithEvents TableLayoutPanel4 As TableLayoutPanel
-    Friend WithEvents Label2 As Label
+    Friend WithEvents lbTotal As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents TableLayoutPanel5 As TableLayoutPanel
-    Friend WithEvents Label3 As Label
+    Friend WithEvents lbConferido As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents TableLayoutPanel6 As TableLayoutPanel
-    Friend WithEvents Label5 As Label
+    Friend WithEvents lbPendente As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents TableLayoutPanel7 As TableLayoutPanel
     Friend WithEvents TableLayoutPanel8 As TableLayoutPanel
     Friend WithEvents Panel14 As Panel
     Friend WithEvents TableLayoutPanel9 As TableLayoutPanel
     Friend WithEvents Panel15 As Panel
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents txtEan As TextBox
     Friend WithEvents Panel16 As Panel
-    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents txtSerial As TextBox
     Friend WithEvents TableLayoutPanel10 As TableLayoutPanel
     Friend WithEvents TableLayoutPanel11 As TableLayoutPanel
     Friend WithEvents Panel10 As Panel
-    Public WithEvents TextBox1 As TextBox
+    Public WithEvents txtCaixa As TextBox
     Public WithEvents AdvancedDataGridView1 As Zuby.ADGV.AdvancedDataGridView
 
 End Class
