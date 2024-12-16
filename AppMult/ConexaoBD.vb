@@ -1,20 +1,18 @@
 ﻿Imports System.Data.OleDb
-Imports System.Reflection.Emit
-Imports System.Windows.Forms.VisualStyles.VisualStyleElement
-Imports Zuby.ADGV
 
 Module ConexaoBD
+
+    Dim caminho_executavel As String = System.AppDomain.CurrentDomain.BaseDirectory.ToString()
+
+    Public AcessBD As String = "C:\Users\luiz.os\source\repos\Coruja-samsung\AppMult\AppMult\BaseAppMult\AppMult.accdb"
+    Public CaminhoSerial As String = "C:\Users\luiz.os\source\repos\Coruja-samsung\AppMult\AppMult\BaseAppMult\SerialScan.xls"
+    Public CaminhoEan As String = "C:\Users\luiz.os\source\repos\Coruja-samsung\AppMult\AppMult\BaseAppMult\EANs.xls"
 
     Public Sub Bddedados()
 
         Dim stopwatch As Stopwatch
         stopwatch = New Stopwatch()
         stopwatch.Start()
-
-        ' Caminhos dos arquivos Excel
-        Dim excelFile1 As String = "C:\Users\Luiz Henrique\source\repos\AppMult\AppMult\BaseAppMult\SerialScan.xls"
-        Dim excelFile2 As String = "C:\Users\Luiz Henrique\source\repos\AppMult\AppMult\BaseAppMult\EANs.xls"
-        Dim AcessBD As String = "C:\Users\Luiz Henrique\source\repos\AppMult\AppMult\BaseAppMult\AppMult.accdb"
 
         ' Conexão com o banco de dados Access
         Dim accessConnStr As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & AcessBD
@@ -30,7 +28,7 @@ Module ConexaoBD
             OpenExcelSerial()
             Dim dt1 As New DataTable()
             ' Conectando ao primeiro arquivo Excel
-            Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & excelFile1 & ";Extended Properties='Excel 12.0;HDR=NO';")
+            Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & CaminhoSerial & ";Extended Properties='Excel 12.0;HDR=NO';")
                 conn1.Open()
                 ' Cria um comando para a consulta SQL
                 Using cmd1 As New OleDbCommand(query1, conn1)
@@ -45,7 +43,7 @@ Module ConexaoBD
             OpenExcelEan()
             Dim dt2 As New DataTable()
             ' Conectando ao segundo arquivo Excel
-            Using conn2 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & excelFile2 & ";Extended Properties='Excel 12.0;HDR=NO';")
+            Using conn2 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & CaminhoEan & ";Extended Properties='Excel 12.0;HDR=NO';")
                 conn2.Open()
                 ' Cria um comando para a consulta SQL no segundo arquivo Excel
                 Using cmd2 As New OleDbCommand(query2, conn2)
@@ -92,6 +90,7 @@ Module ConexaoBD
                             ' Adiciona os parâmetros da consulta
                             insertCmd.Parameters.AddWithValue("?", row1("F9"))
                             insertCmd.Parameters.AddWithValue("?", row1("F5"))
+                            insertCmd.Parameters.AddWithValue("?", "")
                             insertCmd.Parameters.AddWithValue("?", row1("F10"))
                             ' Executa o comando de inserção
                             insertCmd.ExecuteNonQuery()
@@ -118,6 +117,55 @@ Module ConexaoBD
             MessageBox.Show("Erro: " & ex.Message)
         End Try
     End Sub
+
+    Function PegarCaixa(Caixa As String)
+        Dim accessConnStr As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & AcessBD
+        Dim query As String = "SELECT * FROM Validacao"
+
+        Try
+            ' Conectando ao banco de dados Access
+            Using accessConn As New OleDbConnection(accessConnStr)
+                accessConn.Open()
+
+                Dim dt1 As New DataTable
+                Using cmd1 As New OleDbCommand(query, accessConn)
+                    ' Cria um adaptador para preencher o DataTable
+                    Dim da1 As New OleDbDataAdapter(cmd1)
+                    da1.Fill(dt1)
+                End Using
+
+                Dim Table As New DataTable()
+                Table.Columns.Add("CAIXA", GetType(String))
+                Table.Columns.Add("SKUs", GetType(String))
+                Table.Columns.Add("EANs", GetType(String))
+                Table.Columns.Add("SERIALs", GetType(String))
+
+                ' Iterar pelas linhas da primeira tabela (dt1)
+                For Each row1 As DataRow In dt1.Rows
+                    If Caixa = row1.Field(Of String)("CAIXA") Then
+                        ' Procurar a linha correspondente na tabela dt2
+                        If row1.Field(Of String)("EAN") <> "" Then
+                            ' Adicionar os dados na tabela temporária
+                            Dim newrow As Object() = {
+                                row1("CAIXA"),
+                                row1("SKU"),
+                                row1("EAN"),
+                                row1("SERIAL")}
+                            Table.Rows.Add(newrow)
+                        Else
+                            Return "EAN"
+                            Exit Function
+                        End If
+                    End If
+                Next
+                Return Table
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Erro: " & ex.Message)
+        End Try
+    End Function
+
+
 
     'Function PegarCaixa(Caixa As String)
     '    Dim stopwatch As Stopwatch

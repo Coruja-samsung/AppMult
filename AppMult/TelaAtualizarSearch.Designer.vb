@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class TelaAtualizarSearch
+Partial Class TelaAtualizarSerial
     Inherits System.Windows.Forms.UserControl
 
     'O UserControl substitui o descarte para limpar a lista de componentes.
@@ -22,7 +22,7 @@ Partial Class TelaAtualizarSearch
     'Não o modifique usando o editor de códigos.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(TelaAtualizarSearch))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(TelaAtualizarSerial))
         Panel1 = New Panel()
         Panel2 = New Panel()
         Panel3 = New Panel()
@@ -130,10 +130,10 @@ Partial Class TelaAtualizarSearch
         Label1.Name = "Label1"
         Label1.Size = New Size(838, 70)
         Label1.TabIndex = 0
-        Label1.Text = "Atualização do Search"
+        Label1.Text = "Atualização do Serial"
         Label1.TextAlign = ContentAlignment.MiddleCenter
         ' 
-        ' TelaAtualizarSearch
+        ' TelaAtualizarSerial
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
@@ -142,7 +142,7 @@ Partial Class TelaAtualizarSearch
         Controls.Add(Panel3)
         Controls.Add(Panel2)
         Controls.Add(Panel1)
-        Name = "TelaAtualizarSearch"
+        Name = "TelaAtualizarSerial"
         Size = New Size(858, 572)
         Panel3.ResumeLayout(False)
         Panel5.ResumeLayout(False)

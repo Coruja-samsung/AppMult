@@ -40,7 +40,7 @@ Partial Class Principal
         lbCaminho = New Label()
         PanelDeskTop = New Panel()
         TelaValidacao1 = New TelaValidacao()
-        TelaAtualizarSearch1 = New TelaAtualizarSearch()
+        TelaAtualizarSearch1 = New TelaAtualizarSerial()
         TelaAtualizaEan1 = New TelaAtualizaEan()
         PanelMenu.SuspendLayout()
         SubMenuAtualizar.SuspendLayout()
@@ -377,7 +377,7 @@ Partial Class Principal
     Friend WithEvents SubMenuAtualizar As Panel
     Friend WithEvents ButtonEans As Button
     Friend WithEvents ButtonSearch As Button
-    Friend WithEvents TelaAtualizarSearch1 As TelaAtualizarSearch
+    Friend WithEvents TelaAtualizarSearch1 As TelaAtualizarSerial
     Friend WithEvents TelaAtualizaEan1 As TelaAtualizaEan
     Friend WithEvents ButtonRecize As Button
     Friend Protected WithEvents TelaValidacao1 As TelaValidacao

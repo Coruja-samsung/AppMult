@@ -1,5 +1,23 @@
 ﻿Imports System.Data.OleDb
 Imports System.Reflection.Emit
+Imports System.Windows.Forms.AxHost
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+
+'Dim stopwatch As Stopwatch
+'stopwatch = New Stopwatch()
+'stopwatch.Start()
+
+'stopwatch.Stop()
+'Dim elapsed As TimeSpan = stopwatch.Elapsed
+
+'' Formatando o TimeSpan como "hh:mm:ss:fff"
+'Dim formattedTime As String = String.Format("{0:D2}:{1:D2}:{2:D2}.{3:D3}",
+'                                       elapsed.Hours,
+'                                       elapsed.Minutes,
+'                                       elapsed.Seconds,
+'                                       elapsed.Milliseconds)
+
+'MessageBox.Show("Dados inseridos com sucesso! " & formattedTime)
 
 
 Public Class TelaValidacao
@@ -29,6 +47,7 @@ Public Class TelaValidacao
     End Sub
 
     Private Sub AddCab__dataTable()
+
         ' Adicionar tabela ao DataSet
         _dataTable = _dataSet.Tables.Add("TableTest")
 
@@ -37,7 +56,6 @@ Public Class TelaValidacao
         _dataTable.Columns.Add("SKUs", GetType(String))
         _dataTable.Columns.Add("EANs", GetType(String))
         _dataTable.Columns.Add("SERIALs", GetType(String))
-        _dataTable.Columns.Add("STATUs", GetType(Image))
 
         ' Vincular o DataTable ao BindingSource
         bindingSource_main.DataMember = _dataTable.TableName
@@ -46,12 +64,25 @@ Public Class TelaValidacao
         AdvancedDataGridView1.Columns(1).FillWeight = 110
         AdvancedDataGridView1.Columns(2).FillWeight = 90
         AdvancedDataGridView1.Columns(3).FillWeight = 100
-        AdvancedDataGridView1.Columns(4).FillWeight = 50
         AdvancedDataGridView1.SetChecklistTextFilterRemoveNodesOnSearchMode(AdvancedDataGridView1.Columns(0), False)
         AdvancedDataGridView1.SetChecklistTextFilterRemoveNodesOnSearchMode(AdvancedDataGridView1.Columns(1), False)
         AdvancedDataGridView1.SetChecklistTextFilterRemoveNodesOnSearchMode(AdvancedDataGridView1.Columns(2), False)
         AdvancedDataGridView1.SetChecklistTextFilterRemoveNodesOnSearchMode(AdvancedDataGridView1.Columns(3), False)
-        AdvancedDataGridView1.SetChecklistTextFilterRemoveNodesOnSearchMode(AdvancedDataGridView1.Columns(4), False)
+
+        Dim STATOs As New DataGridViewImageColumn()
+
+        STATOs.HeaderText = "STATUs"
+        STATOs.Image = My.Resources.Resources.scanner
+        STATOs.ImageLayout = DataGridViewImageCellLayout.Zoom
+        STATOs.Name = "STATUs"
+        STATOs.ReadOnly = True
+        STATOs.FillWeight = 50
+
+        AdvancedDataGridView1.Columns.AddRange(STATOs)
+        AdvancedDataGridView1.SetFilterAndSortEnabled(AdvancedDataGridView1.Columns(4), False)
+
+
+        'AdvancedDataGridView1.Columns(4).ImageLayout = DataGridViewImageCellLayout.Zoom
     End Sub
 
     Private Sub AddCab_tabela_erros()
@@ -89,73 +120,6 @@ Public Class TelaValidacao
         AjustarTamanhoFonte(sender)
     End Sub
 
-    Function PegarCaixa(Caixa As String)
-        Dim AcessBD As String = "C:\Users\luiz.os\source\repos\Coruja-samsung\AppMult\AppMult\BaseAppMult\AppMult.accdb"
-        Dim accessConnStr As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & AcessBD
-        Dim query As String = "SELECT * FROM Validacao"
-
-        Try
-            ' Conectando ao banco de dados Access
-            Using accessConn As New OleDbConnection(accessConnStr)
-                accessConn.Open()
-
-                Dim dt1 As New DataTable
-                Using cmd1 As New OleDbCommand(query, accessConn)
-                    ' Cria um adaptador para preencher o DataTable
-                    Dim da1 As New OleDbDataAdapter(cmd1)
-                    da1.Fill(dt1)
-                End Using
-
-                ' Iterar pelas linhas da primeira tabela (dt1)
-                For Each row1 As DataRow In dt1.Rows
-                    If Caixa = row1.Field(Of String)("CAIXA") Then
-                        ' Procurar a linha correspondente na tabela dt2
-                        If row1.Field(Of String)("EAN") <> "" Then
-                            ' Adicionar os dados na tabela temporária
-
-                            Dim newrow As Object() = {
-                                row1("CAIXA"),
-                                row1("SKU"),
-                                row1("EAN"),
-                                row1("SERIAL"),
-                                My.Resources.Resources.scanner
-                            }
-                            _dataTable.Rows.Add(newrow)
-
-                        Else
-                            Return "EAN"
-                            Exit Function
-                        End If
-                    End If
-                Next
-
-                If _dataTable.Rows.Count <> 0 Then
-                    txtCaixa.Enabled = False
-                Else
-                    Return "NF"
-                    Exit Function
-                End If
-
-            End Using
-            'Dim stopwatch As Stopwatch
-            'stopwatch = New Stopwatch()
-            'stopwatch.Start()
-
-            'stopwatch.Stop()
-            'Dim elapsed As TimeSpan = stopwatch.Elapsed
-
-            '' Formatando o TimeSpan como "hh:mm:ss:fff"
-            'Dim formattedTime As String = String.Format("{0:D2}:{1:D2}:{2:D2}.{3:D3}",
-            '                                       elapsed.Hours,
-            '                                       elapsed.Minutes,
-            '                                       elapsed.Seconds,
-            '                                       elapsed.Milliseconds)
-
-            'MessageBox.Show("Dados inseridos com sucesso! " & formattedTime)
-        Catch ex As Exception
-            MessageBox.Show("Erro: " & ex.Message)
-        End Try
-    End Function
     Public Function CompareImages(ByVal img1 As Bitmap, ByVal img2 As Bitmap) As Boolean
         Dim i As Integer
         Dim j As Integer
@@ -171,14 +135,20 @@ Public Class TelaValidacao
     End Function
     Private Sub txtCaixa_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtCaixa.KeyPress
         If e.KeyChar = ChrW(13) Then
-            Dim result As String = PegarCaixa(txtCaixa.Text)
-            If result = "EAN" Then
+            Dim result = PegarCaixa(txtCaixa.Text)
+            If TypeOf result Is System.Data.DataTable Then
+                If result.Rows.Count <> 0 Then
+                    txtCaixa.Enabled = False
+                    _dataTable.Merge(result)
+                Else
+                    MessageBox.Show("Caixa Não Encontrada!", "Atenção!")
+                    txtCaixa.Text = ""
+                End If
+            Else
                 _dataTable.Clear()
                 MessageBox.Show("Atualize o Arquivo de Eans!", "Atenção")
                 txtCaixa.Text = ""
-            ElseIf result = "NF" Then
-                MessageBox.Show("Caixa Não Encontrada!", "Atenção!")
-                txtCaixa.Text = ""
+                Exit Sub
             End If
             Dim ites As Integer = AdvancedDataGridView1.RowCount
             lbTotal.Text = ites
@@ -270,5 +240,25 @@ Public Class TelaValidacao
                 End If
             End If
         End If
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        lbTotal.Text = 0
+        lbConferido.Text = 0
+        lbPendente.Text = 0
+        ProgressBar1.Value = 0
+        lbPorcent.Text = "0%"
+
+        txtCaixa.Enabled = True
+        txtCaixa.Text = ""
+        txtEan.Text = ""
+        txtSerial.Text = ""
+
+        _dataTable.Clear()
+        txtCaixa.Focus()
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
     End Sub
 End Class

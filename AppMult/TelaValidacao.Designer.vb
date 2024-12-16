@@ -158,15 +158,15 @@ Partial Class TelaValidacao
         ' TableLayoutPanel1
         ' 
         TableLayoutPanel1.ColumnCount = 1
-        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100.0F))
         TableLayoutPanel1.Controls.Add(Panel11, 0, 1)
         TableLayoutPanel1.Controls.Add(TableLayoutPanel10, 0, 0)
         TableLayoutPanel1.Dock = DockStyle.Fill
         TableLayoutPanel1.Location = New Point(0, 0)
         TableLayoutPanel1.Name = "TableLayoutPanel1"
         TableLayoutPanel1.RowCount = 2
-        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 45F))
-        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 55F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 45.0F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 55.0F))
         TableLayoutPanel1.Size = New Size(838, 505)
         TableLayoutPanel1.TabIndex = 0
         ' 
@@ -204,29 +204,29 @@ Partial Class TelaValidacao
         ' TableLayoutPanel10
         ' 
         TableLayoutPanel10.ColumnCount = 1
-        TableLayoutPanel10.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100F))
+        TableLayoutPanel10.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100.0F))
         TableLayoutPanel10.Controls.Add(TableLayoutPanel2, 0, 0)
         TableLayoutPanel10.Dock = DockStyle.Fill
         TableLayoutPanel10.Location = New Point(0, 0)
         TableLayoutPanel10.Margin = New Padding(0)
         TableLayoutPanel10.Name = "TableLayoutPanel10"
         TableLayoutPanel10.RowCount = 1
-        TableLayoutPanel10.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
+        TableLayoutPanel10.RowStyles.Add(New RowStyle(SizeType.Percent, 100.0F))
         TableLayoutPanel10.Size = New Size(838, 227)
         TableLayoutPanel10.TabIndex = 3
         ' 
         ' TableLayoutPanel2
         ' 
         TableLayoutPanel2.ColumnCount = 1
-        TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100F))
+        TableLayoutPanel2.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100.0F))
         TableLayoutPanel2.Controls.Add(TableLayoutPanel3, 0, 0)
         TableLayoutPanel2.Controls.Add(Panel9, 0, 1)
         TableLayoutPanel2.Dock = DockStyle.Fill
         TableLayoutPanel2.Location = New Point(3, 3)
         TableLayoutPanel2.Name = "TableLayoutPanel2"
         TableLayoutPanel2.RowCount = 2
-        TableLayoutPanel2.RowStyles.Add(New RowStyle(SizeType.Percent, 40F))
-        TableLayoutPanel2.RowStyles.Add(New RowStyle(SizeType.Percent, 60F))
+        TableLayoutPanel2.RowStyles.Add(New RowStyle(SizeType.Percent, 40.0F))
+        TableLayoutPanel2.RowStyles.Add(New RowStyle(SizeType.Percent, 60.0F))
         TableLayoutPanel2.Size = New Size(832, 221)
         TableLayoutPanel2.TabIndex = 0
         ' 
@@ -244,7 +244,7 @@ Partial Class TelaValidacao
         TableLayoutPanel3.Margin = New Padding(0)
         TableLayoutPanel3.Name = "TableLayoutPanel3"
         TableLayoutPanel3.RowCount = 1
-        TableLayoutPanel3.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
+        TableLayoutPanel3.RowStyles.Add(New RowStyle(SizeType.Percent, 100.0F))
         TableLayoutPanel3.Size = New Size(832, 88)
         TableLayoutPanel3.TabIndex = 0
         ' 
@@ -262,15 +262,15 @@ Partial Class TelaValidacao
         ' TableLayoutPanel4
         ' 
         TableLayoutPanel4.ColumnCount = 1
-        TableLayoutPanel4.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
+        TableLayoutPanel4.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50.0F))
         TableLayoutPanel4.Controls.Add(lbTotal, 0, 1)
         TableLayoutPanel4.Controls.Add(Label1, 0, 0)
         TableLayoutPanel4.Dock = DockStyle.Fill
         TableLayoutPanel4.Location = New Point(0, 0)
         TableLayoutPanel4.Name = "TableLayoutPanel4"
         TableLayoutPanel4.RowCount = 2
-        TableLayoutPanel4.RowStyles.Add(New RowStyle(SizeType.Percent, 50F))
-        TableLayoutPanel4.RowStyles.Add(New RowStyle(SizeType.Percent, 50F))
+        TableLayoutPanel4.RowStyles.Add(New RowStyle(SizeType.Percent, 50.0F))
+        TableLayoutPanel4.RowStyles.Add(New RowStyle(SizeType.Percent, 50.0F))
         TableLayoutPanel4.Size = New Size(257, 75)
         TableLayoutPanel4.TabIndex = 0
         ' 
@@ -316,15 +316,15 @@ Partial Class TelaValidacao
         ' TableLayoutPanel5
         ' 
         TableLayoutPanel5.ColumnCount = 1
-        TableLayoutPanel5.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
+        TableLayoutPanel5.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50.0F))
         TableLayoutPanel5.Controls.Add(lbConferido, 0, 1)
         TableLayoutPanel5.Controls.Add(Label4, 0, 0)
         TableLayoutPanel5.Dock = DockStyle.Fill
         TableLayoutPanel5.Location = New Point(0, 0)
         TableLayoutPanel5.Name = "TableLayoutPanel5"
         TableLayoutPanel5.RowCount = 2
-        TableLayoutPanel5.RowStyles.Add(New RowStyle(SizeType.Percent, 50F))
-        TableLayoutPanel5.RowStyles.Add(New RowStyle(SizeType.Percent, 50F))
+        TableLayoutPanel5.RowStyles.Add(New RowStyle(SizeType.Percent, 50.0F))
+        TableLayoutPanel5.RowStyles.Add(New RowStyle(SizeType.Percent, 50.0F))
         TableLayoutPanel5.Size = New Size(257, 75)
         TableLayoutPanel5.TabIndex = 1
         ' 
@@ -372,15 +372,15 @@ Partial Class TelaValidacao
         ' TableLayoutPanel6
         ' 
         TableLayoutPanel6.ColumnCount = 1
-        TableLayoutPanel6.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
+        TableLayoutPanel6.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50.0F))
         TableLayoutPanel6.Controls.Add(lbPendente, 0, 1)
         TableLayoutPanel6.Controls.Add(Label6, 0, 0)
         TableLayoutPanel6.Dock = DockStyle.Fill
         TableLayoutPanel6.Location = New Point(0, 0)
         TableLayoutPanel6.Name = "TableLayoutPanel6"
         TableLayoutPanel6.RowCount = 2
-        TableLayoutPanel6.RowStyles.Add(New RowStyle(SizeType.Percent, 50F))
-        TableLayoutPanel6.RowStyles.Add(New RowStyle(SizeType.Percent, 50F))
+        TableLayoutPanel6.RowStyles.Add(New RowStyle(SizeType.Percent, 50.0F))
+        TableLayoutPanel6.RowStyles.Add(New RowStyle(SizeType.Percent, 50.0F))
         TableLayoutPanel6.Size = New Size(258, 75)
         TableLayoutPanel6.TabIndex = 1
         ' 
@@ -425,7 +425,7 @@ Partial Class TelaValidacao
         ' TableLayoutPanel7
         ' 
         TableLayoutPanel7.ColumnCount = 1
-        TableLayoutPanel7.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
+        TableLayoutPanel7.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50.0F))
         TableLayoutPanel7.Controls.Add(TableLayoutPanel8, 0, 1)
         TableLayoutPanel7.Controls.Add(TableLayoutPanel11, 0, 0)
         TableLayoutPanel7.Dock = DockStyle.Fill
@@ -440,15 +440,15 @@ Partial Class TelaValidacao
         ' TableLayoutPanel8
         ' 
         TableLayoutPanel8.ColumnCount = 2
-        TableLayoutPanel8.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 40F))
-        TableLayoutPanel8.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 60F))
+        TableLayoutPanel8.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 40.0F))
+        TableLayoutPanel8.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 60.0F))
         TableLayoutPanel8.Controls.Add(Panel14, 0, 0)
         TableLayoutPanel8.Controls.Add(TableLayoutPanel9, 1, 0)
         TableLayoutPanel8.Dock = DockStyle.Fill
         TableLayoutPanel8.Location = New Point(3, 41)
         TableLayoutPanel8.Name = "TableLayoutPanel8"
         TableLayoutPanel8.RowCount = 1
-        TableLayoutPanel8.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
+        TableLayoutPanel8.RowStyles.Add(New RowStyle(SizeType.Percent, 100.0F))
         TableLayoutPanel8.Size = New Size(820, 83)
         TableLayoutPanel8.TabIndex = 1
         ' 
@@ -477,15 +477,15 @@ Partial Class TelaValidacao
         ' TableLayoutPanel9
         ' 
         TableLayoutPanel9.ColumnCount = 1
-        TableLayoutPanel9.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100F))
+        TableLayoutPanel9.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100.0F))
         TableLayoutPanel9.Controls.Add(Panel15, 0, 0)
         TableLayoutPanel9.Controls.Add(Panel16, 0, 1)
         TableLayoutPanel9.Dock = DockStyle.Fill
         TableLayoutPanel9.Location = New Point(331, 3)
         TableLayoutPanel9.Name = "TableLayoutPanel9"
         TableLayoutPanel9.RowCount = 2
-        TableLayoutPanel9.RowStyles.Add(New RowStyle(SizeType.Percent, 50F))
-        TableLayoutPanel9.RowStyles.Add(New RowStyle(SizeType.Percent, 50F))
+        TableLayoutPanel9.RowStyles.Add(New RowStyle(SizeType.Percent, 50.0F))
+        TableLayoutPanel9.RowStyles.Add(New RowStyle(SizeType.Percent, 50.0F))
         TableLayoutPanel9.Size = New Size(486, 77)
         TableLayoutPanel9.TabIndex = 1
         ' 
@@ -544,7 +544,7 @@ Partial Class TelaValidacao
         TableLayoutPanel11.Location = New Point(3, 3)
         TableLayoutPanel11.Name = "TableLayoutPanel11"
         TableLayoutPanel11.RowCount = 1
-        TableLayoutPanel11.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
+        TableLayoutPanel11.RowStyles.Add(New RowStyle(SizeType.Percent, 100.0F))
         TableLayoutPanel11.Size = New Size(820, 32)
         TableLayoutPanel11.TabIndex = 2
         ' 
@@ -582,7 +582,7 @@ Partial Class TelaValidacao
         ' 
         ' TelaValidacao
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
         AutoScaleMode = AutoScaleMode.Font
         Controls.Add(Panel4)
         Controls.Add(Panel3)
