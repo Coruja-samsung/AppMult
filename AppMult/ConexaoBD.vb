@@ -8,6 +8,9 @@ Module ConexaoBD
     Public CaminhoSerial As String = "C:\Users\luiz.os\source\repos\Coruja-samsung\AppMult\AppMult\BaseAppMult\SerialScan.xls"
     Public CaminhoEan As String = "C:\Users\luiz.os\source\repos\Coruja-samsung\AppMult\AppMult\BaseAppMult\EANs.xls"
 
+    Public UsuarioLogado As String
+    Public NomeLogado As String
+
     Public Sub Bddedados()
 
         Dim stopwatch As Stopwatch
@@ -165,6 +168,77 @@ Module ConexaoBD
         End Try
     End Function
 
+    Sub Criarusuario(nomeb As String, usuariob As String, senhab As String)
+        Dim accessConnStr As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & AcessBD
+        Dim query As String = "INSERT INTO Usuarios (Usuario, Senha, Nome) VALUES (?, ?, ?)"
+
+        Try
+            Using accessConn As New OleDbConnection(accessConnStr)
+                accessConn.Open()
+                Using insertCmd As New OleDbCommand(query, accessConn)
+                    ' Adiciona os parâmetros da consulta
+                    insertCmd.Parameters.AddWithValue("?", usuariob)
+                    insertCmd.Parameters.AddWithValue("?", senhab)
+                    insertCmd.Parameters.AddWithValue("?", nomeb)
+                    ' Executa o comando de inserção
+                    insertCmd.ExecuteNonQuery()
+                End Using
+            End Using
+
+            Inicio.TelaCadastro1.nome.Text = ""
+            Inicio.TelaCadastro1.usuario.Text = ""
+            Inicio.TelaCadastro1.Senha.Text = ""
+            Inicio.TelaCadastro1.Senha2.Text = ""
+
+            MessageBox.Show("Usuario Cadastrado com Sucesso!")
+
+            Inicio.TelaCadastro1.Visible = False
+            Inicio.TelaLogin1.Visible = True
+
+        Catch ex As Exception
+            MessageBox.Show("Erro: " & ex.Message)
+        End Try
+
+    End Sub
+
+    Sub logar(usuariob As String, senhab As String)
+        Dim accessConnStr As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & AcessBD
+        Dim query As String = "SELECT * FROM Usuarios"
+
+        Try
+            ' Conectando ao banco de dados Access
+            Using accessConn As New OleDbConnection(accessConnStr)
+                accessConn.Open()
+
+                Dim dt1 As New DataTable
+                Using cmd1 As New OleDbCommand(query, accessConn)
+                    ' Cria um adaptador para preencher o DataTable
+                    Dim da1 As New OleDbDataAdapter(cmd1)
+                    da1.Fill(dt1)
+                End Using
+
+                ' Iterar pelas linhas da primeira tabela (dt1)
+                For Each row1 As DataRow In dt1.Rows
+                    If usuariob = row1.Field(Of String)("Usuario") Then
+                        If senhab = row1.Field(Of String)("Senha") Then
+                            MessageBox.Show("Usuario logado com sucesso!")
+                            NomeLogado = row1.Field(Of String)("Nome")
+                            UsuarioLogado = row1.Field(Of String)("Usuario")
+                            Inicio.Close()
+                            Principal.Show()
+                            Exit Sub
+                        Else
+                            MessageBox.Show("Senha incorreta!")
+                            Exit Sub
+                        End If
+                    End If
+                Next row1
+                MessageBox.Show("Usuario Não encontrado!")
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Erro: " & ex.Message)
+        End Try
+    End Sub
 
 
     'Function PegarCaixa(Caixa As String)
