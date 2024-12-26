@@ -4,7 +4,7 @@ Module ConexaoBD
 
     Dim caminho_executavel As String = System.AppDomain.CurrentDomain.BaseDirectory.ToString()
 
-    Public AcessBD As String = "C:\Users\luiz.os\source\repos\Coruja-samsung\AppMult\AppMult\BaseAppMult\AppMult.accdb"
+    Public AcessBD As String = "C:\Users\Luiz Henrique\source\repos\AppMult\AppMult\BaseAppMult\AppMult.accdb"
     Public CaminhoSerial As String = "C:\Users\luiz.os\source\repos\Coruja-samsung\AppMult\AppMult\BaseAppMult\SerialScan.xls"
     Public CaminhoEan As String = "C:\Users\luiz.os\source\repos\Coruja-samsung\AppMult\AppMult\BaseAppMult\EANs.xls"
 
@@ -221,11 +221,12 @@ Module ConexaoBD
                 For Each row1 As DataRow In dt1.Rows
                     If usuariob = row1.Field(Of String)("Usuario") Then
                         If senhab = row1.Field(Of String)("Senha") Then
-                            MessageBox.Show("Usuario logado com sucesso!")
                             NomeLogado = row1.Field(Of String)("Nome")
                             UsuarioLogado = row1.Field(Of String)("Usuario")
-                            Inicio.Close()
+
                             Principal.Show()
+                            Inicio.Close()
+
                             Exit Sub
                         Else
                             MessageBox.Show("Senha incorreta!")
@@ -240,6 +241,74 @@ Module ConexaoBD
         End Try
     End Sub
 
+
+    ' receber tabela e usuario e hora
+    Sub salvarvalidado()
+        Dim accessConnStr As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & AcessBD
+        Dim query As String = "INSERT INTO historicovalidacao (Data/hora_Validacao, Caixa, Sku, Ean, Serial, Usuario, Nome) VALUES (?, ?, ?, ?, ?, ?, ?)"
+
+        Try
+            Using accessConn As New OleDbConnection(accessConnStr)
+                accessConn.Open()
+                Using insertCmd As New OleDbCommand(query, accessConn)
+                    ' Adiciona os parâmetros da consulta
+
+                    ' adicionar a tabela que vier em uma variavel e usuario e hora
+                    insertCmd.Parameters.AddWithValue("?", usuario)
+
+                    ' Executa o comando de inserção
+                    insertCmd.ExecuteNonQuery()
+                End Using
+            End Using
+
+            Inicio.TelaCadastro1.nome.Text = ""
+            Inicio.TelaCadastro1.usuario.Text = ""
+            Inicio.TelaCadastro1.Senha.Text = ""
+            Inicio.TelaCadastro1.Senha2.Text = ""
+
+            MessageBox.Show("Usuario Cadastrado com Sucesso!")
+
+            Inicio.TelaCadastro1.Visible = False
+            Inicio.TelaLogin1.Visible = True
+
+        Catch ex As Exception
+            MessageBox.Show("Erro: " & ex.Message)
+        End Try
+
+
+    End Sub
+
+    Sub salvarerros()
+        Dim accessConnStr As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & AcessBD
+        Dim query As String = "INSERT INTO Usuarios (Usuario, Senha, Nome) VALUES (?, ?, ?)"
+
+        Try
+            Using accessConn As New OleDbConnection(accessConnStr)
+                accessConn.Open()
+                Using insertCmd As New OleDbCommand(query, accessConn)
+                    ' Adiciona os parâmetros da consulta
+                    insertCmd.Parameters.AddWithValue("?", usuariob)
+                    ' Executa o comando de inserção
+                    insertCmd.ExecuteNonQuery()
+                End Using
+            End Using
+
+            Inicio.TelaCadastro1.nome.Text = ""
+            Inicio.TelaCadastro1.usuario.Text = ""
+            Inicio.TelaCadastro1.Senha.Text = ""
+            Inicio.TelaCadastro1.Senha2.Text = ""
+
+            MessageBox.Show("Usuario Cadastrado com Sucesso!")
+
+            Inicio.TelaCadastro1.Visible = False
+            Inicio.TelaLogin1.Visible = True
+
+        Catch ex As Exception
+            MessageBox.Show("Erro: " & ex.Message)
+        End Try
+
+
+    End Sub
 
     'Function PegarCaixa(Caixa As String)
     '    Dim stopwatch As Stopwatch

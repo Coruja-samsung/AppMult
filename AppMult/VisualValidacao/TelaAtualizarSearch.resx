@@ -119,7 +119,7 @@
   </resheader>
   <data name="Label2.Text" xml:space="preserve">
     <value>Passo 1: No excel Clique em "Copiar"
-Passo 2: Baixe o arquivo "Inventory &gt; Search Inventory &gt; Inventory Search" Do sistema WMS e clique em "Salvar Como"
+Passo 2: Baixe o arquivo "Outbound &gt; Serial Sacan &gt; Serial Sacan by Plt " Do sistema WMS e clique em "Salvar Como"
 Passo 3: Aguarde, Pressione CTRL + V, clique em Salvar ( se aparecer outro pop clique em Sim )
 Passo 4: Após baixar e substituir, no Excel clique no botão "Atualizar" e aguarde.
 

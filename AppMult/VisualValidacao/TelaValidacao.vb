@@ -88,6 +88,7 @@ Public Class TelaValidacao
     Private Sub AddCab_tabela_erros()
         ' Adicionar colunas à tabela
         tabela_erros.Columns.Add("CAIXA", GetType(String))
+        tabela_erros.Columns.Add("SKUs", GetType(String))
         tabela_erros.Columns.Add("EANs", GetType(String))
         tabela_erros.Columns.Add("SERIALs", GetType(String))
         tabela_erros.Columns.Add("Erro", GetType(String))
@@ -165,11 +166,13 @@ Public Class TelaValidacao
         If e.KeyChar = ChrW(13) Then
             If txtEan.Text <> "" Then
                 If txtSerial.Text <> "" Then
+                    Dim SKULinha As Object
                     Dim EanLinha As Object
                     Dim SerialLinha As Object
                     Dim Status As Object
                     For Each row As DataGridViewRow In AdvancedDataGridView1.Rows
 
+                        SKULinha = row.Cells("SKUs").Value
                         EanLinha = row.Cells("EANs").Value
                         SerialLinha = row.Cells("SERIALs").Value
                         Status = row.Cells("STATUs").Value
@@ -180,6 +183,7 @@ Public Class TelaValidacao
                             txtSerial.Text = ""
                             txtEan.Focus()
                             tabela_erros.Rows.Add(txtCaixa.Text,
+                                SKULinha,
                                 EanLinha,
                                 Status,
                                 "informacoes trocadas"
@@ -195,6 +199,7 @@ Public Class TelaValidacao
                                     txtSerial.Text = ""
                                     txtEan.Focus()
                                     tabela_erros.Rows.Add(txtCaixa.Text,
+                                        SKULinha,
                                         EanLinha,
                                         Status,
                                         "Item ja Validado"
@@ -229,6 +234,7 @@ Public Class TelaValidacao
                             txtSerial.Text = ""
                             txtEan.Focus()
                             tabela_erros.Rows.Add(txtCaixa.Text,
+                                SKULinha,
                                 EanLinha,
                                 Status,
                                 "Item nao pertence a caixa"
@@ -259,6 +265,12 @@ Public Class TelaValidacao
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        If lbPendente.Text <> "0" Then
+            MessageBox.Show("Itens Pendentes!")
+            Exit Sub
+        End If
+
+
 
     End Sub
 End Class

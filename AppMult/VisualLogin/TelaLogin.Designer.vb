@@ -28,8 +28,6 @@ Partial Class TelaLogin
         Button1 = New Button()
         Button2 = New Button()
         Label1 = New Label()
-        Button3 = New Button()
-        Button4 = New Button()
         txtSenha = New TextBox()
         Panel1 = New Panel()
         SuspendLayout()
@@ -65,6 +63,8 @@ Partial Class TelaLogin
         ' Button1
         ' 
         Button1.BackColor = Color.Transparent
+        Button1.BackgroundImageLayout = ImageLayout.None
+        Button1.FlatAppearance.BorderSize = 0
         Button1.Font = New Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Button1.ForeColor = Color.DimGray
         Button1.Location = New Point(50, 314)
@@ -96,32 +96,6 @@ Partial Class TelaLogin
         Label1.TabIndex = 1
         Label1.Text = "Ainda não tem conta?"
         ' 
-        ' Button3
-        ' 
-        Button3.BackColor = Color.Transparent
-        Button3.Enabled = False
-        Button3.Font = New Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button3.ForeColor = Color.DimGray
-        Button3.Location = New Point(50, 141)
-        Button3.Name = "Button3"
-        Button3.Size = New Size(324, 48)
-        Button3.TabIndex = 2
-        Button3.Text = "Entrar"
-        Button3.UseVisualStyleBackColor = False
-        ' 
-        ' Button4
-        ' 
-        Button4.BackColor = Color.Transparent
-        Button4.Enabled = False
-        Button4.Font = New Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button4.ForeColor = Color.DimGray
-        Button4.Location = New Point(50, 203)
-        Button4.Name = "Button4"
-        Button4.Size = New Size(324, 48)
-        Button4.TabIndex = 2
-        Button4.Text = "Entrar"
-        Button4.UseVisualStyleBackColor = False
-        ' 
         ' txtSenha
         ' 
         txtSenha.Font = New Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
@@ -151,9 +125,7 @@ Partial Class TelaLogin
         Controls.Add(txtSenha)
         Controls.Add(Panel2)
         Controls.Add(txtUsuario)
-        Controls.Add(Button4)
         Controls.Add(Button2)
-        Controls.Add(Button3)
         Controls.Add(Button1)
         Controls.Add(Label1)
         Controls.Add(Login)
@@ -168,8 +140,6 @@ Partial Class TelaLogin
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
     Friend WithEvents Label1 As Label
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Button4 As Button
     Friend WithEvents txtSenha As TextBox
     Friend WithEvents Panel1 As Panel
 

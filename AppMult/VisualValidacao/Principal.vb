@@ -1,9 +1,15 @@
 ﻿Public Class Principal
+
+
+
+
     Private Sub ButtonRecize_Click(sender As Object, e As EventArgs) Handles ButtonRecize.Click
         If PanelMenu.Width > 200 Then
             PanelMenu.Width = 77
+            fundoazul.Left = 0
         Else
             PanelMenu.Width = 256
+            fundoazul.Left = 250
         End If
     End Sub
 
@@ -58,8 +64,17 @@
     End Sub
 
     Private Sub ButtonSair_Click(sender As Object, e As EventArgs) Handles ButtonSair.Click
+
+        ConexaoBD.NomeLogado = ""
+        ConexaoBD.UsuarioLogado = ""
+
+        Inicio.Show()
         Me.Close()
+
     End Sub
 
+    Private Sub Principal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        lbUsuario.Text = ConexaoBD.NomeLogado
+    End Sub
 
 End Class

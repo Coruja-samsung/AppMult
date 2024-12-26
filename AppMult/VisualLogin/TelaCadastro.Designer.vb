@@ -28,14 +28,10 @@ Partial Class TelaCadastro
         Label1 = New Label()
         Panel2 = New Panel()
         nome = New TextBox()
-        Button3 = New Button()
-        Button4 = New Button()
         usuario = New TextBox()
         Panel1 = New Panel()
-        Button5 = New Button()
         Senha = New TextBox()
         Panel3 = New Panel()
-        Button6 = New Button()
         Senha2 = New TextBox()
         Panel4 = New Panel()
         SuspendLayout()
@@ -53,7 +49,7 @@ Partial Class TelaCadastro
         ' Button2
         ' 
         Button2.BackColor = Color.Transparent
-        Button2.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
+        Button2.Font = New Font("Segoe UI Semibold", 12.0F, FontStyle.Bold)
         Button2.ForeColor = Color.DimGray
         Button2.Location = New Point(245, 388)
         Button2.Name = "Button2"
@@ -65,7 +61,7 @@ Partial Class TelaCadastro
         ' Salvar
         ' 
         Salvar.BackColor = Color.Transparent
-        Salvar.Font = New Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Salvar.Font = New Font("Segoe UI Semibold", 18.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Salvar.ForeColor = Color.DimGray
         Salvar.Location = New Point(50, 316)
         Salvar.Name = "Salvar"
@@ -102,32 +98,6 @@ Partial Class TelaCadastro
         nome.Size = New Size(272, 35)
         nome.TabIndex = 0
         ' 
-        ' Button3
-        ' 
-        Button3.BackColor = Color.Transparent
-        Button3.Enabled = False
-        Button3.Font = New Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button3.ForeColor = Color.DimGray
-        Button3.Location = New Point(50, 108)
-        Button3.Name = "Button3"
-        Button3.Size = New Size(324, 48)
-        Button3.TabIndex = 12
-        Button3.Text = "Entrar"
-        Button3.UseVisualStyleBackColor = False
-        ' 
-        ' Button4
-        ' 
-        Button4.BackColor = Color.Transparent
-        Button4.Enabled = False
-        Button4.Font = New Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button4.ForeColor = Color.DimGray
-        Button4.Location = New Point(50, 159)
-        Button4.Name = "Button4"
-        Button4.Size = New Size(324, 48)
-        Button4.TabIndex = 12
-        Button4.Text = "Entrar"
-        Button4.UseVisualStyleBackColor = False
-        ' 
         ' usuario
         ' 
         usuario.Font = New Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
@@ -145,19 +115,6 @@ Partial Class TelaCadastro
         Panel1.Name = "Panel1"
         Panel1.Size = New Size(35, 35)
         Panel1.TabIndex = 11
-        ' 
-        ' Button5
-        ' 
-        Button5.BackColor = Color.Transparent
-        Button5.Enabled = False
-        Button5.Font = New Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button5.ForeColor = Color.DimGray
-        Button5.Location = New Point(50, 208)
-        Button5.Name = "Button5"
-        Button5.Size = New Size(324, 48)
-        Button5.TabIndex = 12
-        Button5.Text = "Entrar"
-        Button5.UseVisualStyleBackColor = False
         ' 
         ' Senha
         ' 
@@ -177,19 +134,6 @@ Partial Class TelaCadastro
         Panel3.Name = "Panel3"
         Panel3.Size = New Size(35, 35)
         Panel3.TabIndex = 11
-        ' 
-        ' Button6
-        ' 
-        Button6.BackColor = Color.Transparent
-        Button6.Enabled = False
-        Button6.Font = New Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button6.ForeColor = Color.DimGray
-        Button6.Location = New Point(50, 258)
-        Button6.Name = "Button6"
-        Button6.Size = New Size(324, 48)
-        Button6.TabIndex = 12
-        Button6.Text = "Entrar"
-        Button6.UseVisualStyleBackColor = False
         ' 
         ' Senha2
         ' 
@@ -212,7 +156,7 @@ Partial Class TelaCadastro
         ' 
         ' TelaCadastro
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.White
         Controls.Add(Panel4)
@@ -223,10 +167,6 @@ Partial Class TelaCadastro
         Controls.Add(Senha)
         Controls.Add(usuario)
         Controls.Add(nome)
-        Controls.Add(Button6)
-        Controls.Add(Button5)
-        Controls.Add(Button4)
-        Controls.Add(Button3)
         Controls.Add(Button2)
         Controls.Add(Salvar)
         Controls.Add(Label1)
@@ -242,14 +182,10 @@ Partial Class TelaCadastro
     Friend WithEvents Label1 As Label
     Friend WithEvents Panel2 As Panel
     Friend WithEvents nome As TextBox
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Button4 As Button
     Friend WithEvents usuario As TextBox
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents Button5 As Button
     Friend WithEvents Senha As TextBox
     Friend WithEvents Panel3 As Panel
-    Friend WithEvents Button6 As Button
     Friend WithEvents Senha2 As TextBox
     Friend WithEvents Panel4 As Panel
 

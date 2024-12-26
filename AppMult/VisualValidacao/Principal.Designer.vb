@@ -34,6 +34,7 @@ Partial Class Principal
         ButtonValidacao = New Button()
         PanelLogo = New Panel()
         ButtonRecize = New Button()
+        fundoazul = New Panel()
         PanelUser = New Panel()
         lbUsuario = New Label()
         PanelCaminho = New Panel()
@@ -222,6 +223,7 @@ Partial Class Principal
         ' PanelLogo
         ' 
         PanelLogo.Controls.Add(ButtonRecize)
+        PanelLogo.Controls.Add(fundoazul)
         PanelLogo.Controls.Add(PanelUser)
         PanelLogo.Controls.Add(lbUsuario)
         PanelLogo.Dock = DockStyle.Top
@@ -250,7 +252,18 @@ Partial Class Principal
         ButtonRecize.Name = "ButtonRecize"
         ButtonRecize.Size = New Size(55, 55)
         ButtonRecize.TabIndex = 6
+        ButtonRecize.TabStop = False
         ButtonRecize.UseVisualStyleBackColor = False
+        ' 
+        ' fundoazul
+        ' 
+        fundoazul.BackColor = Color.Transparent
+        fundoazul.BackgroundImageLayout = ImageLayout.Stretch
+        fundoazul.ForeColor = Color.Transparent
+        fundoazul.Location = New Point(250, 0)
+        fundoazul.Name = "fundoazul"
+        fundoazul.Size = New Size(256, 158)
+        fundoazul.TabIndex = 1
         ' 
         ' PanelUser
         ' 
@@ -265,14 +278,13 @@ Partial Class Principal
         ' 
         ' lbUsuario
         ' 
-        lbUsuario.AutoSize = True
         lbUsuario.Font = New Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lbUsuario.ForeColor = Color.Transparent
-        lbUsuario.Location = New Point(86, 117)
+        lbUsuario.ForeColor = Color.White
+        lbUsuario.Location = New Point(3, 117)
         lbUsuario.Name = "lbUsuario"
-        lbUsuario.Size = New Size(81, 25)
-        lbUsuario.TabIndex = 1
-        lbUsuario.Text = "Usuario"
+        lbUsuario.Size = New Size(250, 25)
+        lbUsuario.TabIndex = 2
+        lbUsuario.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' PanelCaminho
         ' 
@@ -282,7 +294,7 @@ Partial Class Principal
         PanelCaminho.Location = New Point(256, 0)
         PanelCaminho.Name = "PanelCaminho"
         PanelCaminho.Size = New Size(858, 49)
-        PanelCaminho.TabIndex = 0
+        PanelCaminho.TabIndex = 1
         ' 
         ' lbCaminho
         ' 
@@ -304,7 +316,7 @@ Partial Class Principal
         PanelDeskTop.Location = New Point(256, 49)
         PanelDeskTop.Name = "PanelDeskTop"
         PanelDeskTop.Size = New Size(858, 572)
-        PanelDeskTop.TabIndex = 3
+        PanelDeskTop.TabIndex = 0
         ' 
         ' TelaValidacao1
         ' 
@@ -314,7 +326,7 @@ Partial Class Principal
         TelaValidacao1.Margin = New Padding(4, 3, 4, 3)
         TelaValidacao1.Name = "TelaValidacao1"
         TelaValidacao1.Size = New Size(858, 572)
-        TelaValidacao1.TabIndex = 2
+        TelaValidacao1.TabIndex = 0
         ' 
         ' TelaAtualizarSearch1
         ' 
@@ -355,7 +367,6 @@ Partial Class Principal
         SubMenuAtualizar.ResumeLayout(False)
         PanelSair.ResumeLayout(False)
         PanelLogo.ResumeLayout(False)
-        PanelLogo.PerformLayout()
         PanelCaminho.ResumeLayout(False)
         PanelCaminho.PerformLayout()
         PanelDeskTop.ResumeLayout(False)
@@ -380,6 +391,7 @@ Partial Class Principal
     Friend WithEvents TelaAtualizarSearch1 As TelaAtualizarSerial
     Friend WithEvents TelaAtualizaEan1 As TelaAtualizaEan
     Friend WithEvents ButtonRecize As Button
-    Friend Protected WithEvents TelaValidacao1 As TelaValidacao
+    Protected Friend WithEvents TelaValidacao1 As TelaValidacao
+    Friend WithEvents fundoazul As Panel
 
 End Class
