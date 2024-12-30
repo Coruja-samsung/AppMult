@@ -249,6 +249,31 @@ Public Class TelaValidacao
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        limpar()
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        If lbPendente.Text <> "0" Then
+            MessageBox.Show("Itens Pendentes!")
+            Exit Sub
+        End If
+
+        Dim salvar1 As String
+        salvar1 = salvarvalidado(_dataTable)
+
+        Dim salvar2 As String
+        salvar2 = salvarerros(tabela_erros)
+
+        If salvar1 <> "" And salvar2 <> "" Then
+            MessageBox.Show("Validação Finalizada!")
+            limpar()
+        Else
+            MessageBox.Show("Erro ao salvar!")
+        End If
+
+    End Sub
+
+    Sub limpar()
         lbTotal.Text = 0
         lbConferido.Text = 0
         lbPendente.Text = 0
@@ -262,15 +287,5 @@ Public Class TelaValidacao
 
         _dataTable.Clear()
         txtCaixa.Focus()
-    End Sub
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        If lbPendente.Text <> "0" Then
-            MessageBox.Show("Itens Pendentes!")
-            Exit Sub
-        End If
-
-
-
     End Sub
 End Class
