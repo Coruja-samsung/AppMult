@@ -262,9 +262,11 @@ Public Class TelaValidacao
         salvar1 = salvarvalidado(_dataTable)
 
         Dim salvar2 As String
-        salvar2 = salvarerros(tabela_erros)
+        If tabela_erros IsNot Nothing Then
+            salvar2 = salvarerros(tabela_erros)
+        End If
 
-        If salvar1 <> "" And salvar2 <> "" Then
+        If salvar1 Is Nothing And salvar2 Is Nothing Then
             MessageBox.Show("Validação Finalizada!")
             limpar()
         Else

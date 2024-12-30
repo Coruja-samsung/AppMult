@@ -4,9 +4,9 @@ Module ConexaoBD
 
     Dim caminho_executavel As String = System.AppDomain.CurrentDomain.BaseDirectory.ToString()
 
-    Public AcessBD As String = "C:\Users\luiz.os\source\repos\Coruja-samsung\AppMult\AppMult\BaseAppMult\AppMult.accdb"
-    Public CaminhoSerial As String = "C:\Users\luiz.os\source\repos\Coruja-samsung\AppMult\AppMult\BaseAppMult\SerialScan.xls"
-    Public CaminhoEan As String = "C:\Users\luiz.os\source\repos\Coruja-samsung\AppMult\AppMult\BaseAppMult\EANs.xls"
+    Public AcessBD As String = Application.StartupPath & "\Base\AppMult.accdb"
+    Public CaminhoSerial As String = Application.StartupPath & "\Base\SerialScan.xls"
+    Public CaminhoEan As String = Application.StartupPath & "\Base\EANs.xls"
 
     Public UsuarioLogado As String
     Public NomeLogado As String
