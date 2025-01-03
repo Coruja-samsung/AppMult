@@ -134,7 +134,7 @@ Partial Class Principal
         ButtonSearch.Padding = New Padding(9, 0, 0, 0)
         ButtonSearch.Size = New Size(256, 55)
         ButtonSearch.TabIndex = 7
-        ButtonSearch.Text = "Search"
+        ButtonSearch.Text = "Serial"
         ButtonSearch.UseVisualStyleBackColor = False
         ' 
         ' PanelSair

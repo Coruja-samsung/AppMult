@@ -1,12 +1,17 @@
 ﻿Imports System.Data.OleDb
+Imports Microsoft.Office.Interop
+Imports System.Runtime.InteropServices
+Imports Windows.Win32.System
 
 Module ConexaoBD
 
-    Dim caminho_executavel As String = System.AppDomain.CurrentDomain.BaseDirectory.ToString()
+    Public AcessBD As String = Application.StartupPath & "Base\AppMult.accdb"
+    Public CaminhoSerial As String = Application.StartupPath & "Base\SerialScan.xls"
+    Public CaminhoEan As String = Application.StartupPath & "Base\EANs.xls"
 
-    Public AcessBD As String = Application.StartupPath & "\Base\AppMult.accdb"
-    Public CaminhoSerial As String = Application.StartupPath & "\Base\SerialScan.xls"
-    Public CaminhoEan As String = Application.StartupPath & "\Base\EANs.xls"
+    'Public AcessBD As String = "C:\Users\luiz.os\source\repos\Coruja-samsung\AppMult\AppMult\BaseAppMult\AppMult.accdb"
+    'Public CaminhoSerial As String = "C:\Users\luiz.os\source\repos\Coruja-samsung\AppMult\AppMult\BaseAppMult\SerialScan.xls"
+    'Public CaminhoEan As String = "C:\Users\luiz.os\source\repos\Coruja-samsung\AppMult\AppMult\BaseAppMult\EANs.xls"
 
     Public UsuarioLogado As String
     Public NomeLogado As String
@@ -20,43 +25,91 @@ Module ConexaoBD
         ' Conexão com o banco de dados Access
         Dim accessConnStr As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & AcessBD
 
-        ' Consulta SQL para ler os dados do primeiro arquivo Excel
-        Dim query1 As String = "SELECT F9, F5, F10 FROM [sheet1$] WHERE F9 IS NOT NULL AND F9 <> ' ' AND F5 <> 'Item Code' "
-
-        ' Consulta SQL para ler os dados do segundo arquivo Excel
-        Dim query2 As String = "SELECT F3, F1 FROM [sheet1$] WHERE F3 IS NOT NULL AND F3 <> 'Item Code'"
-
         ' Executando a consulta e inserindo os dados no banco de dados Access
         Try
-            OpenExcelSerial()
             Dim dt1 As New DataTable()
-            ' Conectando ao primeiro arquivo Excel
-            Using conn1 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & CaminhoSerial & ";Extended Properties='Excel 12.0;HDR=NO';")
-                conn1.Open()
-                ' Cria um comando para a consulta SQL
-                Using cmd1 As New OleDbCommand(query1, conn1)
-                    ' Cria um adaptador para preencher o DataTable
-                    Dim da1 As New OleDbDataAdapter(cmd1)
-                    da1.Fill(dt1)
-                    conn1.Close()
-                End Using
-            End Using
-            CloseExcels()
 
-            OpenExcelEan()
+            ' Criação de objetos para Excel
+            Dim excelApp As Excel.Application = Nothing
+            Dim excelWorkbook As Excel.Workbook = Nothing
+            Dim excelWorksheet As Excel.Worksheet = Nothing
+
+            ' Inicia a aplicação do Excel
+            excelApp = New Excel.Application()
+            excelWorkbook = excelApp.Workbooks.Open(CaminhoSerial)
+            excelWorksheet = CType(excelWorkbook.Sheets(1), Excel.Worksheet)
+
+            ' Processa os dados e preenche o DataTable
+            Dim data As Object(,) = CType(excelWorksheet.UsedRange.Value, Object(,))
+            Dim rows As Integer = data.GetLength(0)
+            Dim cols As Integer = data.GetLength(1)
+
+            ' Criação das colunas no DataTable
+            dt1.Columns.Add(data(3, 5))
+            dt1.Columns.Add(data(3, 9))
+            dt1.Columns.Add(data(3, 10))
+
+            ' Preenchendo o DataTable com os valores da planilha
+            For row As Integer = 4 To rows
+                If data(row, 9) <> "" Then
+                    Dim dataRow As DataRow = dt1.NewRow()
+                    dataRow(0) = data(row, 5)
+                    dataRow(1) = data(row, 9)
+                    dataRow(2) = data(row, 10)
+                    dt1.Rows.Add(dataRow)
+                End If
+            Next
+
             Dim dt2 As New DataTable()
             ' Conectando ao segundo arquivo Excel
-            Using conn2 As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & CaminhoEan & ";Extended Properties='Excel 12.0;HDR=NO';")
-                conn2.Open()
-                ' Cria um comando para a consulta SQL no segundo arquivo Excel
-                Using cmd2 As New OleDbCommand(query2, conn2)
-                    ' Cria um adaptador para preencher o DataTable
-                    Dim da2 As New OleDbDataAdapter(cmd2)
-                    da2.Fill(dt2)
-                    conn2.Close()
-                End Using
-            End Using
-            CloseExcels()
+            Dim excelWorkbook2 As Excel.Workbook = Nothing
+            Dim excelWorksheet2 As Excel.Worksheet = Nothing
+
+            ' Inicia a aplicação do Excel
+            excelWorkbook2 = excelApp.Workbooks.Open(CaminhoEan)
+            excelWorksheet2 = CType(excelWorkbook2.Sheets(1), Excel.Worksheet)
+
+            ' Processa os dados e preenche o DataTable
+            Dim data2 As Object(,) = CType(excelWorksheet2.UsedRange.Value, Object(,))
+            Dim rows2 As Integer = data2.GetLength(0)
+            Dim cols2 As Integer = data2.GetLength(1)
+
+            ' Criação das colunas no DataTable
+            dt2.Columns.Add(data2(3, 1))
+            dt2.Columns.Add(data2(3, 3))
+
+            ' Preenchendo o DataTable com os valores da planilha
+            For row As Integer = 4 To rows2
+                If data2(row, 1) <> "" Then
+                    Dim dataRow2 As DataRow = dt2.NewRow()
+                    dataRow2(0) = data2(row, 1)
+                    dataRow2(1) = data2(row, 3)
+
+                    dt2.Rows.Add(dataRow2)
+                End If
+            Next
+
+            If excelWorksheet IsNot Nothing Then Marshal.ReleaseComObject(excelWorksheet)
+            If excelWorksheet2 IsNot Nothing Then Marshal.ReleaseComObject(excelWorksheet2)
+            If excelWorkbook IsNot Nothing Then
+                excelWorkbook.Close(False)
+                Marshal.ReleaseComObject(excelWorkbook)
+                excelWorkbook = Nothing
+            End If
+            If excelWorkbook2 IsNot Nothing Then
+                excelWorkbook2.Close(False)
+                Marshal.ReleaseComObject(excelWorkbook2)
+                excelWorkbook2 = Nothing
+            End If
+
+            If excelApp IsNot Nothing Then
+                excelApp.Quit()
+                Marshal.ReleaseComObject(excelApp)
+            End If
+
+            GC.Collect()
+            GC.WaitForPendingFinalizers()
+
 
             ' Conectando ao banco de dados Access
             Using accessConn As New OleDbConnection(accessConnStr)
@@ -70,7 +123,7 @@ Module ConexaoBD
                 ' Para cada linha no DataTable do primeiro arquivo Excel, insira os dados na tabela Access
                 For Each row1 As DataRow In dt1.Rows
                     ' Achar a linha correspondente no segundo DataTable
-                    Dim row2 As DataRow = dt2.AsEnumerable().FirstOrDefault(Function(r) r.Field(Of String)("F3") = row1.Field(Of String)("F5"))
+                    Dim row2 As DataRow = dt2.AsEnumerable().FirstOrDefault(Function(r) r.Field(Of String)("Item Code") = row1.Field(Of String)("Item Code"))
 
                     If row2 IsNot Nothing Then
                         ' Monta o comando SQL para inserção no Access
@@ -78,10 +131,10 @@ Module ConexaoBD
 
                         Using insertCmd As New OleDbCommand(insertQuery, accessConn)
                             ' Adiciona os parâmetros da consulta
-                            insertCmd.Parameters.AddWithValue("?", row1("F9"))
-                            insertCmd.Parameters.AddWithValue("?", row1("F5"))
-                            insertCmd.Parameters.AddWithValue("?", row2("F1"))
-                            insertCmd.Parameters.AddWithValue("?", row1("F10"))
+                            insertCmd.Parameters.AddWithValue("?", row1("Box ID"))
+                            insertCmd.Parameters.AddWithValue("?", row1("Item Code"))
+                            insertCmd.Parameters.AddWithValue("?", row2("Alt. Code"))
+                            insertCmd.Parameters.AddWithValue("?", row1("Serial No."))
                             ' Executa o comando de inserção
                             insertCmd.ExecuteNonQuery()
                         End Using
@@ -91,17 +144,16 @@ Module ConexaoBD
 
                         Using insertCmd As New OleDbCommand(insertQuery, accessConn)
                             ' Adiciona os parâmetros da consulta
-                            insertCmd.Parameters.AddWithValue("?", row1("F9"))
-                            insertCmd.Parameters.AddWithValue("?", row1("F5"))
+                            insertCmd.Parameters.AddWithValue("?", row1("Box ID"))
+                            insertCmd.Parameters.AddWithValue("?", row1("Item Code"))
                             insertCmd.Parameters.AddWithValue("?", "")
-                            insertCmd.Parameters.AddWithValue("?", row1("F10"))
+                            insertCmd.Parameters.AddWithValue("?", row1("Serial No."))
                             ' Executa o comando de inserção
                             insertCmd.ExecuteNonQuery()
                         End Using
                     End If
                 Next
             End Using
-
 
             stopwatch.Stop()
 
@@ -116,7 +168,6 @@ Module ConexaoBD
 
             MessageBox.Show("Dados inseridos com sucesso! " & formattedTime)
         Catch ex As Exception
-            CloseExcels()
             MessageBox.Show("Erro: " & ex.Message)
         End Try
     End Sub

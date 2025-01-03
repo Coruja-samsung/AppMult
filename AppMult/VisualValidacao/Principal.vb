@@ -30,6 +30,7 @@
     Private Sub ButtonValidacao_Click(sender As Object, e As EventArgs) Handles ButtonValidacao.Click
         hideTelas()
         hideSubMenus()
+        resetColor()
 
         TelaValidacao1.Visible = True
 
