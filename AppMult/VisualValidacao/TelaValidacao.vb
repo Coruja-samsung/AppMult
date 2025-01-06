@@ -257,9 +257,15 @@ Public Class TelaValidacao
             MessageBox.Show("Itens Pendentes!")
             Exit Sub
         End If
+        If lbConferido.Text = "0" Then
+            MessageBox.Show("Itens Pendentes!")
+            Exit Sub
+        End If
 
         Dim salvar1 As String
-        salvar1 = salvarvalidado(_dataTable)
+        If _dataTable IsNot Nothing Then
+            salvar1 = salvarvalidado(_dataTable)
+        End If
 
         Dim salvar2 As String
         If tabela_erros IsNot Nothing Then

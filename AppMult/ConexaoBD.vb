@@ -44,18 +44,27 @@ Module ConexaoBD
             Dim rows As Integer = data.GetLength(0)
             Dim cols As Integer = data.GetLength(1)
 
+            Dim cabcolunas(3) As Integer
+            Dim contcab As Integer = 0
+
             ' Criação das colunas no DataTable
-            dt1.Columns.Add(data(3, 5))
-            dt1.Columns.Add(data(3, 9))
-            dt1.Columns.Add(data(3, 10))
+            For col As Integer = 1 To cols
+                If data(3, col) = "Item Code" Or
+                   data(3, col) = "Box ID" Or
+                   data(3, col) = "Serial No." Then
+                    dt1.Columns.Add(data(3, col))
+                    cabcolunas(contcab) = col
+                    contcab = contcab + 1
+                End If
+            Next
 
             ' Preenchendo o DataTable com os valores da planilha
             For row As Integer = 4 To rows
                 If data(row, 9) <> "" Then
                     Dim dataRow As DataRow = dt1.NewRow()
-                    dataRow(0) = data(row, 5)
-                    dataRow(1) = data(row, 9)
-                    dataRow(2) = data(row, 10)
+                    dataRow(0) = data(row, cabcolunas(0))
+                    dataRow(1) = data(row, cabcolunas(1))
+                    dataRow(2) = data(row, cabcolunas(2))
                     dt1.Rows.Add(dataRow)
                 End If
             Next
@@ -326,7 +335,7 @@ Module ConexaoBD
 
     Function salvarerros(erros As DataTable)
         Dim accessConnStr As String = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & AcessBD
-        Dim query As String = "INSERT INTO historicovalidacao (Data_hora_Validacao, Caixa, SKU, Ean, Serial, Erro, Usuario, Nome) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+        Dim query As String = "INSERT INTO historicoerros (Data_hora_Validacao, Caixa, SKU, Ean, Serial, Erro, Usuario, Nome) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
 
         Try
             Using accessConn As New OleDbConnection(accessConnStr)
