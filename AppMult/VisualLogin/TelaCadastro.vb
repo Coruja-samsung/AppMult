@@ -6,28 +6,43 @@
 
     Private Sub Salvar_Click(sender As Object, e As EventArgs) Handles Salvar.Click
         If nome.Text = "" Then
-            MessageBox.Show("Preencha o campo Nome!")
+            RJMessageBox.Show("Preencha o campo Nome!",
+                                "Atenção!",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning)
             nome.Focus()
             Exit Sub
         End If
         If usuario.Text = "" Then
-            MessageBox.Show("Preencha o campo Usuario!")
+            RJMessageBox.Show("Preencha o campo Usuario!",
+                                "Atenção!",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning)
             usuario.Focus()
             Exit Sub
         End If
         If Senha.Text = "" Then
-            MessageBox.Show("Preencha o campo Senha!")
+            RJMessageBox.Show("Preencha o campo Senha!",
+                                "Atenção!",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning)
             Senha.Focus()
             Exit Sub
         End If
         If Senha2.Text = "" Then
-            MessageBox.Show("Preencha o campo Senha 2!")
+            RJMessageBox.Show("Preencha o campo Senha!",
+                                "Atenção!",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning)
             Senha2.Focus()
             Exit Sub
         End If
 
         If Senha2.Text <> Senha.Text Then
-            MessageBox.Show("Senhas nao conhecidem!")
+            RJMessageBox.Show("Senhas nao conhecidem!",
+                                "Erro!",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
             Senha.Focus()
             Exit Sub
         End If

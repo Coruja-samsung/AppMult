@@ -5,18 +5,23 @@ Imports Windows.Win32.System
 
 Module ConexaoBD
 
-    Public AcessBD As String = Application.StartupPath & "Base\AppMult.accdb"
-    Public CaminhoSerial As String = Application.StartupPath & "Base\SerialScan.xls"
-    Public CaminhoEan As String = Application.StartupPath & "Base\EANs.xls"
+    'Public AcessBD As String = Application.StartupPath & "Base\AppMult.accdb"
+    'Public CaminhoSerial As String = Application.StartupPath & "Base\SerialScan.xls"
+    'Public CaminhoEan As String = Application.StartupPath & "Base\EANs.xls"
 
-    'Public AcessBD As String = "C:\Users\luiz.os\source\repos\Coruja-samsung\AppMult\AppMult\BaseAppMult\AppMult.accdb"
-    'Public CaminhoSerial As String = "C:\Users\luiz.os\source\repos\Coruja-samsung\AppMult\AppMult\BaseAppMult\SerialScan.xls"
-    'Public CaminhoEan As String = "C:\Users\luiz.os\source\repos\Coruja-samsung\AppMult\AppMult\BaseAppMult\EANs.xls"
+    Public AcessBD As String = "C:\Users\luiz.os\source\repos\Coruja-samsung\AppMult\AppMult\BaseAppMult\AppMult.accdb"
+    Public CaminhoSerial As String = "C:\Users\luiz.os\source\repos\Coruja-samsung\AppMult\AppMult\BaseAppMult\SerialScan.xls"
+    Public CaminhoEan As String = "C:\Users\luiz.os\source\repos\Coruja-samsung\AppMult\AppMult\BaseAppMult\EANs.xls"
 
     Public UsuarioLogado As String
     Public NomeLogado As String
 
     Public Sub Bddedados()
+
+        Dim form2 As New Loading()
+        Dim formTask As Task = Task.Run(Sub()
+                                            form2.ShowDialog()
+                                        End Sub)
 
         Dim stopwatch As Stopwatch
         stopwatch = New Stopwatch()
@@ -27,6 +32,7 @@ Module ConexaoBD
 
         ' Executando a consulta e inserindo os dados no banco de dados Access
         Try
+
             Dim dt1 As New DataTable()
 
             ' Criação de objetos para Excel
@@ -174,10 +180,27 @@ Module ConexaoBD
                                                    elapsed.Minutes,
                                                    elapsed.Seconds,
                                                    elapsed.Milliseconds)
+            If form2.InvokeRequired Then
+                form2.Invoke(Sub() form2.Close())
+            Else
+                form2.Close()
+            End If
 
-            MessageBox.Show("Dados inseridos com sucesso! " & formattedTime)
+            RJMessageBox.Show("Dados inseridos com sucesso! " & formattedTime,
+                                "Sucesso!",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information)
         Catch ex As Exception
-            MessageBox.Show("Erro: " & ex.Message)
+            If form2.InvokeRequired Then
+                form2.Invoke(Sub() form2.Close())
+            Else
+                form2.Close()
+            End If
+
+            RJMessageBox.Show("Erro: " & ex.Message,
+                                "Erro!",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -224,7 +247,10 @@ Module ConexaoBD
                 Return Table
             End Using
         Catch ex As Exception
-            MessageBox.Show("Erro: " & ex.Message)
+            RJMessageBox.Show("Erro: " & ex.Message,
+                                "Erro!",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
         End Try
     End Function
 
@@ -250,13 +276,19 @@ Module ConexaoBD
             Inicio.TelaCadastro1.Senha.Text = ""
             Inicio.TelaCadastro1.Senha2.Text = ""
 
-            MessageBox.Show("Usuario Cadastrado com Sucesso!")
+            RJMessageBox.Show("Usuario Cadastrado com Sucesso!",
+                                "Sucesso!",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information)
 
             Inicio.TelaCadastro1.Visible = False
             Inicio.TelaLogin1.Visible = True
 
         Catch ex As Exception
-            MessageBox.Show("Erro: " & ex.Message)
+            RJMessageBox.Show("Erro: " & ex.Message,
+                                "Erro!",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
         End Try
 
     End Sub
@@ -289,15 +321,24 @@ Module ConexaoBD
 
                             Exit Sub
                         Else
-                            MessageBox.Show("Senha incorreta!")
+                            RJMessageBox.Show("Senha incorreta!",
+                                                "Atenção!",
+                                                MessageBoxButtons.OK,
+                                                MessageBoxIcon.Warning)
                             Exit Sub
                         End If
                     End If
                 Next row1
-                MessageBox.Show("Usuario Não encontrado!")
+                RJMessageBox.Show("Usuario não encontrado!",
+                                    "Erro!",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error)
             End Using
         Catch ex As Exception
-            MessageBox.Show("Erro: " & ex.Message)
+            RJMessageBox.Show("Erro: " & ex.Message,
+                                "Erro!",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
         End Try
     End Sub
 

@@ -6,6 +6,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
     <ApplicationIcon>icone.ico</ApplicationIcon>
+    <StartupObject>AppMult.My.MyApplication</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>

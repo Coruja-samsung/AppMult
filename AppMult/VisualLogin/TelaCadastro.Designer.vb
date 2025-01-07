@@ -49,7 +49,7 @@ Partial Class TelaCadastro
         ' Button2
         ' 
         Button2.BackColor = Color.Transparent
-        Button2.Font = New Font("Segoe UI Semibold", 12.0F, FontStyle.Bold)
+        Button2.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold)
         Button2.ForeColor = Color.DimGray
         Button2.Location = New Point(245, 388)
         Button2.Name = "Button2"
@@ -61,7 +61,7 @@ Partial Class TelaCadastro
         ' Salvar
         ' 
         Salvar.BackColor = Color.Transparent
-        Salvar.Font = New Font("Segoe UI Semibold", 18.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Salvar.Font = New Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Salvar.ForeColor = Color.DimGray
         Salvar.Location = New Point(50, 316)
         Salvar.Name = "Salvar"
@@ -156,7 +156,7 @@ Partial Class TelaCadastro
         ' 
         ' TelaCadastro
         ' 
-        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.White
         Controls.Add(Panel4)

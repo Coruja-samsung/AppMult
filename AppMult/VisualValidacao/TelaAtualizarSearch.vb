@@ -7,7 +7,10 @@
         Clipboard.SetText(texto)
 
         ' Mensagem para confirmar a operação
-        MessageBox.Show("Caminho copiado para a área de transferência.", "Sucesso!")
+        RJMessageBox.Show("Caminho copiado para a área de transferência.",
+                            "Sucesso!",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information)
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click

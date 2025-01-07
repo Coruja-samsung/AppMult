@@ -142,12 +142,18 @@ Public Class TelaValidacao
                     txtCaixa.Enabled = False
                     _dataTable.Merge(result)
                 Else
-                    MessageBox.Show("Caixa Não Encontrada!", "Atenção!")
+                    RJMessageBox.Show("Caixa Não Encontrada!",
+                                       "Erro!",
+                                       MessageBoxButtons.OK,
+                                       MessageBoxIcon.Error)
                     txtCaixa.Text = ""
                 End If
             Else
                 _dataTable.Clear()
-                MessageBox.Show("Atualize o Arquivo de Eans!", "Atenção")
+                RJMessageBox.Show("Atualize o Arquivo de Eans!",
+                                    "Informação",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information)
                 txtCaixa.Text = ""
                 Exit Sub
             End If
@@ -178,7 +184,10 @@ Public Class TelaValidacao
                         Status = row.Cells("STATUs").Value
 
                         If txtEan.Text = SerialLinha Or txtSerial.Text = EanLinha Then
-                            MessageBox.Show("Informações Trocadas!", "Atenção")
+                            RJMessageBox.Show("Informações Trocadas!",
+                                       "Atenção!",
+                                       MessageBoxButtons.OK,
+                                       MessageBoxIcon.Warning)
                             txtEan.Text = ""
                             txtSerial.Text = ""
                             txtEan.Focus()
@@ -194,7 +203,10 @@ Public Class TelaValidacao
                         If txtEan.Text = EanLinha Then
                             If txtSerial.Text = SerialLinha Then
                                 If CompareImages(Status, My.Resources.Resources.verifica) Then
-                                    MessageBox.Show("Item já Validado!", "Atenção")
+                                    RJMessageBox.Show("Item já Validado!",
+                                                       "Atenção!",
+                                                       MessageBoxButtons.OK,
+                                                       MessageBoxIcon.Warning)
                                     txtEan.Text = ""
                                     txtSerial.Text = ""
                                     txtEan.Focus()
@@ -229,7 +241,10 @@ Public Class TelaValidacao
 
                         Dim linhas As Integer = AdvancedDataGridView1.Rows.Count - 1
                         If linhas = row.Index Then
-                            MessageBox.Show("Item não pertence a caixa!", "Atenção")
+                            RJMessageBox.Show("Item não pertence a caixa!",
+                                       "Erro!",
+                                       MessageBoxButtons.OK,
+                                       MessageBoxIcon.Error)
                             txtEan.Text = ""
                             txtSerial.Text = ""
                             txtEan.Focus()
@@ -254,11 +269,17 @@ Public Class TelaValidacao
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         If lbPendente.Text <> "0" Then
-            MessageBox.Show("Itens Pendentes!")
+            RJMessageBox.Show("Itens Pendentes!",
+                                "Erro!",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
             Exit Sub
         End If
         If lbConferido.Text = "0" Then
-            MessageBox.Show("Itens Pendentes!")
+            RJMessageBox.Show("Itens Pendentes!",
+                                "Erro!",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
             Exit Sub
         End If
 
@@ -273,10 +294,16 @@ Public Class TelaValidacao
         End If
 
         If salvar1 Is Nothing And salvar2 Is Nothing Then
-            MessageBox.Show("Validação Finalizada!")
+            RJMessageBox.Show("Validação Finalizada!",
+                                "Secesso!",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information)
             limpar()
         Else
-            MessageBox.Show("Erro ao salvar!")
+            RJMessageBox.Show("Erro ao salvar!",
+                                "Erro!",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error)
         End If
 
     End Sub
@@ -296,4 +323,5 @@ Public Class TelaValidacao
         _dataTable.Clear()
         txtCaixa.Focus()
     End Sub
+
 End Class
