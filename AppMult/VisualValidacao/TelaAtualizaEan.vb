@@ -1,6 +1,5 @@
 ﻿
 Public Class TelaAtualizaEan
-    Private WithEvents bgWorker As New BackgroundWorker()
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         ' O valor que será copiado para a área de transferência
         Dim texto As String = ConexaoBD.CaminhoEan
