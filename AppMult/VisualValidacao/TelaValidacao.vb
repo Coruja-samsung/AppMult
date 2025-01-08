@@ -194,7 +194,7 @@ Public Class TelaValidacao
                             tabela_erros.Rows.Add(txtCaixa.Text,
                                 SKULinha,
                                 EanLinha,
-                                Status,
+                                SerialLinha,
                                 "informacoes trocadas"
                             )
                             Exit Sub
@@ -213,7 +213,7 @@ Public Class TelaValidacao
                                     tabela_erros.Rows.Add(txtCaixa.Text,
                                         SKULinha,
                                         EanLinha,
-                                        Status,
+                                        SerialLinha,
                                         "Item ja Validado"
                                     )
                                     Exit Sub
@@ -251,7 +251,7 @@ Public Class TelaValidacao
                             tabela_erros.Rows.Add(txtCaixa.Text,
                                 SKULinha,
                                 EanLinha,
-                                Status,
+                                SerialLinha,
                                 "Item nao pertence a caixa"
                             )
                             Exit Sub
@@ -321,6 +321,7 @@ Public Class TelaValidacao
         txtSerial.Text = ""
 
         _dataTable.Clear()
+        tabela_erros.Clear()
         txtCaixa.Focus()
     End Sub
 
