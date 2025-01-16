@@ -5,13 +5,13 @@ Imports Windows.Win32.System
 
 Module ConexaoBD
 
-    Public AcessBD As String = Application.StartupPath & "Base\AppMult.accdb"
-    Public CaminhoSerial As String = Application.StartupPath & "Base\SerialScan.xls"
-    Public CaminhoEan As String = Application.StartupPath & "Base\EANs.xls"
+    'Public AcessBD As String = Application.StartupPath & "Base\AppMult.accdb"
+    'Public CaminhoSerial As String = Application.StartupPath & "Base\SerialScan.xls"
+    'Public CaminhoEan As String = Application.StartupPath & "Base\EANs.xls"
 
-    'Public AcessBD As String = "C:\Users\luiz.os\source\repos\Coruja-samsung\AppMult\AppMult\BaseAppMult\AppMult.accdb"
-    'Public CaminhoSerial As String = "C:\Users\luiz.os\source\repos\Coruja-samsung\AppMult\AppMult\BaseAppMult\SerialScan.xls"
-    'Public CaminhoEan As String = "C:\Users\luiz.os\source\repos\Coruja-samsung\AppMult\AppMult\BaseAppMult\EANs.xls"
+    Public AcessBD As String = "C:\Users\luiz.os\source\repos\Coruja-samsung\AppMult\AppMult\BaseAppMult\AppMult.accdb"
+    Public CaminhoSerial As String = "C:\Users\luiz.os\source\repos\Coruja-samsung\AppMult\AppMult\BaseAppMult\SerialScan.xls"
+    Public CaminhoEan As String = "C:\Users\luiz.os\source\repos\Coruja-samsung\AppMult\AppMult\BaseAppMult\EANs.xls"
 
     Public UsuarioLogado As String
     Public NomeLogado As String
@@ -351,8 +351,9 @@ Module ConexaoBD
         Try
             Using accessConn As New OleDbConnection(accessConnStr)
                 accessConn.Open()
-                Using insertCmd As New OleDbCommand(query, accessConn)
-                    For Each row1 As DataRow In validado.Rows
+
+                For Each row1 As DataRow In validado.Rows
+                    Using insertCmd As New OleDbCommand(query, accessConn)
                         ' adicionar a tabela que vier em uma variavel e usuario e hora
                         insertCmd.Parameters.AddWithValue("?", Now)
                         insertCmd.Parameters.AddWithValue("?", row1.Field(Of String)("CAIXA"))
@@ -364,9 +365,11 @@ Module ConexaoBD
 
                         ' Executa o comando de inserção
                         insertCmd.ExecuteNonQuery()
-                    Next
-                End Using
+                    End Using
+                Next
+
             End Using
+
 
         Catch ex As Exception
             salvarvalidado = ex.Message
@@ -381,8 +384,9 @@ Module ConexaoBD
         Try
             Using accessConn As New OleDbConnection(accessConnStr)
                 accessConn.Open()
-                Using insertCmd As New OleDbCommand(query, accessConn)
-                    For Each row1 As DataRow In erros.Rows
+
+                For Each row1 As DataRow In erros.Rows
+                    Using insertCmd As New OleDbCommand(query, accessConn)
                         ' adicionar a tabela que vier em uma variavel e usuario e hora
                         insertCmd.Parameters.AddWithValue("?", Now)
                         insertCmd.Parameters.AddWithValue("?", row1.Field(Of String)("CAIXA"))
@@ -395,8 +399,9 @@ Module ConexaoBD
 
                         ' Executa o comando de inserção
                         insertCmd.ExecuteNonQuery()
-                    Next
-                End Using
+                    End Using
+                Next
+
             End Using
 
         Catch ex As Exception
